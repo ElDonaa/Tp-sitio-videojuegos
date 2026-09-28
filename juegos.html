@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sitio de Videojuegos - Inicio</title>
+    <title>Sitio de Videojuegos - Juegos</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,7 +20,7 @@
     <!-- HEADER / NAVBAR -->
     <header class="navbar navbar-expand-lg navbar-dark sticky-top custom-navbar">
         <div class="container">
-            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
                 <i class="fa-solid fa-gamepad text-primary"></i> GAMEZONE
             </a>
             
@@ -29,13 +29,13 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-               <ul class="navbar-menu mx-auto mb-2 mb-lg-0">
-                  <li><a href="index.html" class="nav-link-custom">Inicio</a></li>
-                  <li><a href="juegos.html" class="nav-link-custom active">Juegos</a></li>
-                 <li><a href="noticias.html" class="nav-link-custom">Noticias</a></li>
-                  <li><a href="analisis.html" class="nav-link-custom">Análisis</a></li>
-                 <li><a href="guias.html" class="nav-link-custom">Guías</a></li>
-                 <li><a href="contacto.html" class="nav-link-custom">Contacto</a></li>
+                <ul class="navbar-menu mx-auto mb-2 mb-lg-0">
+                    <li><a href="index.html" class="nav-link-custom">Inicio</a></li>
+                    <li><a href="juegos.html" class="nav-link-custom active">Juegos</a></li>
+                    <li><a href="#" class="nav-link-custom">Noticias</a></li>
+                    <li><a href="#" class="nav-link-custom">Análisis</a></li>
+                    <li><a href="#" class="nav-link-custom">Guías</a></li>
+                    <li><a href="#" class="nav-link-custom">Contacto</a></li>
                 </ul>
 
                 <div class="d-flex align-items-center gap-3">
@@ -50,265 +50,231 @@
 
     <!-- MAIN CONTENT AREA -->
     <main class="main-content">
-        
-        <!-- HERO SECTION -->
-        <section class="hero-section text-white d-flex align-items-center">
-            <div class="hero-overlay"></div>
-            <div class="container position-relative z-2 py-5">
-                <div class="col-lg-7">
-                    <span class="badge badge-launch mb-3">NUEVO LANZAMIENTO EXCLUSIVO</span>
-                    <h1 class="hero-title fw-black my-3">TU MUNDO GAMER<br><span class="text-primary-custom">EN UN SOLO LUGAR</span></h1>
-                    <p class="hero-description text-secondary-custom mb-4">
-                        Explora las últimas noticias, análisis profundos y guías expertas de los títulos más esperados del año. Únete a la comunidad de GAMEZONE hoy mismo.
-                    </p>
-                    
-                    <div class="d-flex flex-wrap gap-3 mb-5">
-                        <a href="#" class="btn btn-primary-custom"><i class="fa-solid fa-play me-2"></i> Explorar juegos</a>
-                        <a href="#" class="btn btn-secondary-custom"><i class="fa-regular fa-clock me-2"></i> Ver análisis</a>
-                    </div>
 
-                    <div class="d-flex gap-5 border-top border-dark-custom pt-4">
-                        <div>
-                            <h3 class="fw-bold mb-0">15k+</h3>
-                            <small class="text-uppercase text-muted fw-bold">Reseñas</small>
-                        </div>
-                        <div>
-                            <h3 class="fw-bold mb-0">800+</h3>
-                            <small class="text-uppercase text-muted fw-bold">Juegos</small>
-                        </div>
-                        <div>
-                            <h3 class="fw-bold mb-0">50k+</h3>
-                            <small class="text-uppercase text-muted fw-bold">Gamers</small>
-                        </div>
+        <!-- HEADER DEL CATÁLOGO -->
+        <section class="container pt-5 pb-4">
+            <span class="text-primary-custom fw-bold small"><i class="fa-solid fa-gamepad me-1"></i> CATÁLOGO DE JUEGOS</span>
+            <div class="row align-items-end mt-2">
+                <div class="col-lg-7 mb-3 mb-lg-0">
+                    <h1 class="fw-black display-5 text-white">TODOS LOS <span class="text-primary-custom">JUEGOS</span></h1>
+                    <p class="text-secondary-custom mb-0">Explora nuestra biblioteca completa de títulos. Filtra por plataforma, género o calificación para encontrar tu próxima gran aventura.</p>
+                </div>
+                <div class="col-lg-5">
+                    <div class="search-box position-relative">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" class="form-control catalog-search-input" placeholder="Buscar títulos, géneros...">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- JUEGOS DESTACADOS -->
-        <section class="container my-5 py-4">
-            <div class="d-flex justify-content-between align-items-end mb-4">
-                <div>
-                    <span class="text-primary-custom fw-bold small">✦ LO MEJOR DEL MES</span>
-                    <h2 class="fw-black mb-0">JUEGOS DESTACADOS</h2>
+        <!-- FILTROS Y BARRA DE CATEGORÍAS -->
+        <section class="container mb-4">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 border-bottom border-dark-custom pb-3">
+                <!-- Filtros rápidos por plataforma -->
+                <div class="d-flex flex-wrap gap-2">
+                    <button class="btn filter-btn active"><i class="fa-solid fa-border-all me-1"></i> Todos</button>
+                    <button class="btn filter-btn"><i class="fa-solid fa-desktop me-1"></i> PC</button>
+                    <button class="btn filter-btn"><i class="fa-brands fa-playstation me-1"></i> PlayStation</button>
+                    <button class="btn filter-btn"><i class="fa-brands fa-xbox me-1"></i> Xbox</button>
+                    <button class="btn filter-btn"><i class="fa-solid fa-gamepad me-1"></i> Nintendo</button>
                 </div>
-                <a href="#" class="text-secondary-custom text-decoration-none fw-semibold">Ver todos los juegos &gt;</a>
-            </div>
 
+                <!-- Botón Filtros Avanzados -->
+                <button class="btn filter-btn border-0 text-secondary-custom">
+                    <i class="fa-solid fa-sliders me-1"></i> Filtros Avanzados
+                </button>
+            </div>
+        </section>
+
+        <!-- GRID DE JUEGOS (CATÁLOGO) -->
+        <section class="container mb-5">
             <div class="row g-4">
-                <!-- Game Card 1 -->
+                <!-- Juego 1 -->
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="game-card h-100">
                         <div class="card-img-wrapper" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800');">
                             <span class="rating-badge"><i class="fa-solid fa-star text-warning me-1"></i>9.8</span>
                         </div>
                         <div class="p-3">
-                            <div class="d-flex gap-1 mb-2">
-                                <span class="platform-tag">PC</span>
-                                <span class="platform-tag">PS5</span>
-                                <span class="platform-tag">XBS</span>
+                            <small class="text-primary-custom fw-bold extra-small d-block mb-1">PC • RPG</small>
+                            <h5 class="fw-bold text-white mb-1">Elden Ring</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <span class="text-muted extra-small">Acción / RPG</span>
+                                <i class="fa-solid fa-chevron-right text-muted extra-small"></i>
                             </div>
-                            <h5 class="fw-bold mb-1">ELDEN RING: SHADOW</h5>
-                            <p class="text-muted small fw-bold mb-0">ACCIÓN RPG</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Game Card 2 -->
+                <!-- Juego 2 -->
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="game-card h-100">
                         <div class="card-img-wrapper" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800');">
                             <span class="rating-badge"><i class="fa-solid fa-star text-warning me-1"></i>9.2</span>
                         </div>
                         <div class="p-3">
-                            <div class="d-flex gap-1 mb-2">
-                                <span class="platform-tag">PC</span>
-                                <span class="platform-tag">PS5</span>
-                                <span class="platform-tag">XBS</span>
+                            <small class="text-primary-custom fw-bold extra-small d-block mb-1">PC • SHOOTER</small>
+                            <h5 class="fw-bold text-white mb-1">Cyberpunk 2077</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <span class="text-muted extra-small">RPG / Sci-Fi</span>
+                                <i class="fa-solid fa-chevron-right text-muted extra-small"></i>
                             </div>
-                            <h5 class="fw-bold mb-1">CYBERPUNK 2077: PHANTOM</h5>
-                            <p class="text-muted small fw-bold mb-0">SCI-FI SHOOTER</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Game Card 3 -->
+                <!-- Juego 3 -->
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="game-card h-100">
-                        <div class="card-img-wrapper" style="background-image: url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=800');">
+                        <div class="card-img-wrapper position-relative" style="background-image: url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=800');">
                             <span class="rating-badge"><i class="fa-solid fa-star text-warning me-1"></i>9.5</span>
+                            <span class="coming-soon-tag">COMING SOON</span>
                         </div>
                         <div class="p-3">
-                            <div class="d-flex gap-1 mb-2">
-                                <span class="platform-tag">PS5</span>
+                            <small class="text-primary-custom fw-bold extra-small d-block mb-1">PC • HORROR</small>
+                            <h5 class="fw-bold text-white mb-1">Resident Evil 4</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <span class="text-muted extra-small">Survival Horror</span>
+                                <i class="fa-solid fa-chevron-right text-muted extra-small"></i>
                             </div>
-                            <h5 class="fw-bold mb-1">THE LAST OF US PART II</h5>
-                            <p class="text-muted small fw-bold mb-0">SURVIVAL HORROR</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Game Card 4 -->
+                <!-- Juego 4 -->
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="game-card h-100">
                         <div class="card-img-wrapper" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800');">
-                            <span class="rating-badge"><i class="fa-solid fa-star text-warning me-1"></i>9.0</span>
+                            <span class="rating-badge"><i class="fa-solid fa-star text-warning me-1"></i>9.4</span>
                         </div>
                         <div class="p-3">
-                            <div class="d-flex gap-1 mb-2">
-                                <span class="platform-tag">PC</span>
-                                <span class="platform-tag">XBS</span>
+                            <small class="text-primary-custom fw-bold extra-small d-block mb-1">XBOX • RACING</small>
+                            <h5 class="fw-bold text-white mb-1">Forza Horizon 5</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <span class="text-muted extra-small">Simulador / Carreras</span>
+                                <i class="fa-solid fa-chevron-right text-muted extra-small"></i>
                             </div>
-                            <h5 class="fw-bold mb-1">FORZA HORIZON 5</h5>
-                            <p class="text-muted small fw-bold mb-0">CARRERAS</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Juego 5 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="game-card h-100">
+                        <div class="card-img-wrapper" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800');">
+                            <span class="rating-badge"><i class="fa-solid fa-star text-warning me-1"></i>8.9</span>
+                        </div>
+                        <div class="p-3">
+                            <small class="text-primary-custom fw-bold extra-small d-block mb-1">PC • BATTLE ROYALE</small>
+                            <h5 class="fw-bold text-white mb-1">Apex Legends</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <span class="text-muted extra-small">Shooter / Acción</span>
+                                <i class="fa-solid fa-chevron-right text-muted extra-small"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Juego 6 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="game-card h-100">
+                        <div class="card-img-wrapper" style="background-image: url('https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=800');">
+                            <span class="rating-badge"><i class="fa-solid fa-star text-warning me-1"></i>9.6</span>
+                        </div>
+                        <div class="p-3">
+                            <small class="text-primary-custom fw-bold extra-small d-block mb-1">PC • SANDBOX</small>
+                            <h5 class="fw-bold text-white mb-1">Minecraft</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <span class="text-muted extra-small">Aventura / Construcción</span>
+                                <i class="fa-solid fa-chevron-right text-muted extra-small"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Juego 7 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="game-card h-100">
+                        <div class="card-img-wrapper position-relative" style="background-image: url('https://images.unsplash.com/photo-1526738549149-8e07eca6c147?q=80&w=800');">
+                            <span class="rating-badge"><i class="fa-solid fa-star text-warning me-1"></i>9.7</span>
+                            <span class="coming-soon-tag">COMING SOON</span>
+                        </div>
+                        <div class="p-3">
+                            <small class="text-primary-custom fw-bold extra-small d-block mb-1">PLAYSTATION • ACCIÓN</small>
+                            <h5 class="fw-bold text-white mb-1">GTA V</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <span class="text-muted extra-small">Mundo Abierto</span>
+                                <i class="fa-solid fa-chevron-right text-muted extra-small"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Juego 8 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="game-card h-100">
+                        <div class="card-img-wrapper" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800');">
+                            <span class="rating-badge"><i class="fa-solid fa-star text-warning me-1"></i>9.1</span>
+                        </div>
+                        <div class="p-3">
+                            <small class="text-primary-custom fw-bold extra-small d-block mb-1">PC • TACTICAL</small>
+                            <h5 class="fw-bold text-white mb-1">Valorant</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <span class="text-muted extra-small">Shooter Táctico</span>
+                                <i class="fa-solid fa-chevron-right text-muted extra-small"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Mini Banner Cards -->
-            <div class="row g-3 mt-4">
-                <div class="col-12 col-md-4">
-                    <div class="info-card p-3 d-flex align-items-center gap-3">
-                        <i class="fa-solid fa-border-all fs-4 text-primary-custom"></i>
-                        <div>
-                            <h6 class="fw-bold mb-0">LANZAMIENTOS</h6>
-                            <small class="text-muted">Próximos títulos</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="info-card p-3 d-flex align-items-center gap-3">
-                        <i class="fa-solid fa-chart-line fs-4 text-primary-custom"></i>
-                        <div>
-                            <h6 class="fw-bold mb-0">TENDENCIAS</h6>
-                            <small class="text-muted">Lo más jugado ahora</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="info-card p-3 d-flex align-items-center gap-3">
-                        <i class="fa-regular fa-clock fs-4 text-primary-custom"></i>
-                        <div>
-                            <h6 class="fw-bold mb-0">ANÁLISIS RECIENTES</h6>
-                            <small class="text-muted">Opiniones de expertos</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN NOTICIAS + SIDEBAR -->
-        <section class="container my-5">
-            <div class="row g-4">
-                <!-- Columna Noticias -->
-                <div class="col-12 col-lg-8">
-                    <div class="d-flex justify-content-between align-items-end mb-4">
-                        <div>
-                            <span class="text-primary-custom fw-bold small">✦ NOVEDADES DE LA INDUSTRIA</span>
-                            <h2 class="fw-black mb-0">ÚLTIMAS NOTICIAS</h2>
-                        </div>
-                        <a href="#" class="text-secondary-custom text-decoration-none fw-semibold">Leer más noticias &gt;</a>
-                    </div>
-
-                    <div class="d-flex flex-column gap-3">
-                        <div class="news-item p-3 d-flex gap-3 align-items-center">
-                            <div class="news-thumb" style="background-image: url('https://images.unsplash.com/photo-1606813907291-d86efa9b94db?q=80&w=400');"></div>
-                            <div>
-                                <div class="d-flex align-items-center gap-2 mb-2">
-                                    <span class="badge bg-primary">NOTICIAS</span>
-                                    <small class="text-muted">12 DE MAYO, 2024</small>
-                                </div>
-                                <h5 class="fw-bold mb-0">PlayStation anuncia su nuevo State of Play para Junio</h5>
-                            </div>
-                        </div>
-
-                        <div class="news-item p-3 d-flex gap-3 align-items-center">
-                            <div class="news-thumb" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=400');"></div>
-                            <div>
-                                <div class="d-flex align-items-center gap-2 mb-2">
-                                    <span class="badge bg-primary">RUMORES</span>
-                                    <small class="text-muted">10 DE MAYO, 2024</small>
-                                </div>
-                                <h5 class="fw-bold mb-0">GTA VI: Se filtran nuevos detalles sobre el mapa dinámico</h5>
-                            </div>
-                        </div>
-
-                        <div class="news-item p-3 d-flex gap-3 align-items-center">
-                            <div class="news-thumb" style="background-image: url('https://images.unsplash.com/photo-1526738549149-8e07eca6c147?q=80&w=400');"></div>
-                            <div>
-                                <div class="d-flex align-items-center gap-2 mb-2">
-                                    <span class="badge bg-primary">HARDWARE</span>
-                                    <small class="text-muted">08 DE MAYO, 2024</small>
-                                </div>
-                                <h5 class="fw-bold mb-0">Xbox presenta su nueva consola portátil conceptual</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Columna Sidebar -->
-                <div class="col-12 col-lg-4">
-                    <div class="sidebar-box text-center p-4 mb-4">
-                        <div class="sidebar-icon mx-auto mb-3">
-                            <i class="fa-solid fa-users fs-4"></i>
-                        </div>
-                        <h4 class="fw-bold">Comunidad Gamer</h4>
-                        <p class="text-muted small mb-4">Únete a miles de jugadores, comparte tus capturas y encuentra tu próximo equipo para raids.</p>
-                        <button class="btn btn-primary-custom w-100">Unirse al Discord</button>
-                    </div>
-
-                    <div class="sidebar-box p-3 mb-4">
-                        <div class="d-flex gap-3 align-items-start">
-                            <i class="fa-solid fa-shield-halved text-primary-custom fs-4 mt-1"></i>
-                            <div>
-                                <h6 class="fw-bold mb-1">SITIO VERIFICADO</h6>
-                                <p class="text-muted extra-small mb-0">Todos nuestros análisis son independientes y libres de patrocinios externos.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <small class="text-uppercase text-muted fw-bold d-block mb-3">PLATAFORMAS POPULARES</small>
-                        <div class="row g-2">
-                            <div class="col-6">
-                                <button class="btn btn-platform w-100"><i class="fa-brands fa-playstation me-2"></i>PlayStation</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-platform w-100"><i class="fa-brands fa-xbox me-2"></i>Xbox</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-platform w-100"><i class="fa-solid fa-gamepad me-2"></i>Nintendo</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-platform w-100"><i class="fa-solid fa-desktop me-2"></i>PC Master Race</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Botón Cargar Más -->
+            <div class="text-center mt-5">
+                <button class="btn load-more-btn">CARGAR MÁS JUEGOS</button>
             </div>
         </section>
 
-        <!-- NEWSLETTER -->
-        <section class="container my-5">
-            <div class="newsletter-card p-4 p-md-5 position-relative overflow-hidden">
-                <div class="row align-items-center">
-                    <div class="col-lg-8 z-2">
-                        <h2 class="fw-black mb-2">NO TE PIERDAS DE NADA</h2>
-                        <p class="text-secondary-custom mb-4">Suscríbete a nuestro boletín semanal y recibe lo mejor del mundo gaming directamente en tu bandeja de entrada.</p>
-                        
-                        <form class="row g-2 max-w-500">
-                            <div class="col-8">
-                                <input type="email" class="form-control custom-input" placeholder="Tu correo electrónico" required>
-                            </div>
-                            <div class="col-4">
-                                <button type="submit" class="btn btn-primary-custom w-100">SUSCRIBIRSE</button>
-                            </div>
-                        </form>
-                        <small class="text-muted extra-small mt-2 d-block">Al suscribirte, aceptas nuestra política de privacidad y términos de servicio.</small>
+        <!-- TENDENCIAS DE LA SEMANA -->
+        <section class="container my-5 pt-4 border-top border-dark-custom">
+            <h4 class="fw-bold text-white mb-4"><i class="fa-regular fa-star text-primary-custom me-2"></i>Tendencias de la semana</h4>
+
+            <div class="row g-3">
+                <!-- Trending Item 1 -->
+                <div class="col-12 col-md-4">
+                    <div class="trending-card p-3 d-flex align-items-center gap-3">
+                        <div class="trending-thumb" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=200');"></div>
+                        <div>
+                            <h6 class="fw-bold text-white mb-1">Top Título #1</h6>
+                            <small class="text-muted d-block mb-1">ACCIÓN • 50K+ JUGADORES</small>
+                            <span class="text-primary-custom fw-bold extra-small"><i class="fa-regular fa-star me-1"></i>9.8</span>
+                        </div>
                     </div>
                 </div>
-                <i class="fa-solid fa-gamepad newsletter-bg-icon"></i>
+
+                <!-- Trending Item 2 -->
+                <div class="col-12 col-md-4">
+                    <div class="trending-card p-3 d-flex align-items-center gap-3">
+                        <div class="trending-thumb" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=200');"></div>
+                        <div>
+                            <h6 class="fw-bold text-white mb-1">Top Título #2</h6>
+                            <small class="text-muted d-block mb-1">ACCIÓN • 50K+ JUGADORES</small>
+                            <span class="text-primary-custom fw-bold extra-small"><i class="fa-regular fa-star me-1"></i>9.7</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trending Item 3 -->
+                <div class="col-12 col-md-4">
+                    <div class="trending-card p-3 d-flex align-items-center gap-3">
+                        <div class="trending-thumb" style="background-image: url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=200');"></div>
+                        <div>
+                            <h6 class="fw-bold text-white mb-1">Top Título #3</h6>
+                            <small class="text-muted d-block mb-1">ACCIÓN • 50K+ JUGADORES</small>
+                            <span class="text-primary-custom fw-bold extra-small"><i class="fa-regular fa-star me-1"></i>9.6</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -323,7 +289,7 @@
                     <div class="col-6 col-md-2">
                         <h6 class="text-muted text-uppercase fw-bold mb-3">EXPLORAR</h6>
                         <ul class="list-unstyled footer-links">
-                            <li><a href="#">Inicio</a></li>
+                            <li><a href="index.html">Inicio</a></li>
                             <li><a href="#">Noticias</a></li>
                             <li><a href="#">Guías</a></li>
                             <li><a href="#">Comunidad</a></li>
