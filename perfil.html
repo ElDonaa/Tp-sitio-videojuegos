@@ -1,27 +1,291 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sitio de Videojuegos - Inicio</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+    <title>Perfil - GAMEZONE</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- CSS personalizado del proyecto -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="bg-dark text-white">
 
-    <header class="bg-dark text-white p-3">
+    <!-- HEADER / NAVBAR -->
+    <header class="navbar navbar-expand-lg navbar-dark sticky-top custom-navbar">
         <div class="container">
-            <h1>Mi Sitio de Videojuegos</h1>
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
+                <i class="fa-solid fa-gamepad text-primary"></i> GAMEZONE
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-menu mx-auto mb-2 mb-lg-0">
+                <li><a href="index.html" class="nav-link-custom">Inicio</a></li>
+                <li><a href="juegos.html" class="nav-link-custom">Juegos</a></li>
+                <li><a href="plataformas.html" class="nav-link-custom">Plataformas</a></li>
+                <li><a href="noticias.html" class="nav-link-custom">Noticias</a></li>
+                <li><a href="analisis.html" class="nav-link-custom">Análisis</a></li>
+                <li><a href="guias.html" class="nav-link-custom">Guías</a></li>
+                <li><a href="contacto.html" class="nav-link-custom">Contacto</a></li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-3">
+                    <a href="buscar.html" class="btn text-white p-0" aria-label="Buscar">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </a>
+                    <a href="perfil.html" class="btn btn-profile text-decoration-none">
+                        <i class="fa-regular fa-user me-1"></i> Perfil <i class="fa-solid fa-chevron-down ms-1 small"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </header>
 
-    <main class="container my-4">
+    <!-- CONTENIDO PRINCIPAL DEL PERFIL -->
+    <main class="py-4">
+        <div class="container">
+
+            <!-- BANNER DE PERFIL / PORTADA -->
+            <div class="bg-card border border-secondary border-opacity-25 rounded-4 overflow-hidden mb-4 position-relative">
+                <!-- Imagen de Fondo del Banner -->
+                <div class="position-relative" style="height: 220px; background: linear-gradient(180deg, rgba(15, 23, 42, 0.2) 0%, rgba(15, 23, 42, 0.95) 100%), url('img/banner-gamer.jpg') center/cover no-repeat;">
+                </div>
+
+                <!-- Info del Usuario sobre el Banner -->
+                <div class="p-4 pt-0 position-relative mt-n5">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3">
+                        
+                        <!-- Avatar e Identificación -->
+                        <div class="d-flex align-items-end gap-3">
+                            <div class="position-relative">
+                                <img src="img/avatar.png" class="rounded-circle border border-3 border-primary" style="width: 100px; height: 100px; object-fit: cover;" alt="Avatar GamerPro">
+                                <span class="position-absolute bottom-0 end-0 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center border border-2 border-dark" style="width: 28px; height: 28px; font-size: 11px;">
+                                    <i class="fa-solid fa-pencil"></i>
+                                </span>
+                            </div>
+                            <div class="mb-1">
+                                <div class="d-flex align-items-center gap-2">
+                                    <h1 class="h3 fw-bold text-white mb-0">GamerPro</h1>
+                                    <span class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-25 rounded-pill px-2 py-1" style="font-size: 10px;">Nivel 42</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-3 text-secondary small mt-1" style="font-size: 12px;">
+                                    <span>@gamerpro_original</span>
+                                    <span>•</span>
+                                    <span>Miembro desde Marzo 2024</span>
+                                </div>
+                                <div class="d-flex gap-2 mt-3">
+                                    <button class="btn btn-primary btn-sm px-3 rounded-3 font-semibold" style="font-size: 12px;">
+                                        <i class="fa-solid fa-pencil me-1"></i> Editar Perfil
+                                    </button>
+                                    <button class="btn btn-outline-light btn-sm px-3 rounded-3 font-semibold" style="font-size: 12px;">
+                                        <i class="fa-solid fa-gear me-1"></i> Configuración
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Métricas del Banner (Seguidores / Siguiendo / Logros) -->
+                        <div class="d-flex gap-4 text-center pb-1">
+                            <div>
+                                <span class="fs-5 fw-bold text-white d-block">12k</span>
+                                <span class="text-uppercase text-secondary" style="font-size: 10px; letter-spacing: 0.5px;">SEGUIDORES</span>
+                            </div>
+                            <div>
+                                <span class="fs-5 fw-bold text-white d-block">850</span>
+                                <span class="text-uppercase text-secondary" style="font-size: 10px; letter-spacing: 0.5px;">SIGUIENDO</span>
+                            </div>
+                            <div>
+                                <span class="fs-5 fw-bold text-white d-block">2.4k</span>
+                                <span class="text-uppercase text-secondary" style="font-size: 10px; letter-spacing: 0.5px;">LOGROS</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- CUERPO DEL PERFIL: MENÚ LATERAL + PANEL PRINCIPAL -->
+            <div class="row g-4">
+                
+                <!-- NAVEGACIÓN LATERAL DE PERFIL -->
+                <aside class="col-lg-3">
+                    <div class="d-flex flex-column gap-1">
+                        <a href="#" class="btn btn-primary text-start px-3 py-2 rounded-3 d-flex align-items-center gap-2 font-semibold" style="font-size: 13px;">
+                            <i class="fa-regular fa-user"></i> Mi Perfil
+                        </a>
+                        <a href="#" class="btn btn-dark text-start px-3 py-2 rounded-3 text-secondary d-flex align-items-center gap-2" style="font-size: 13px;">
+                            <i class="fa-solid fa-gamepad"></i> Mis Juegos
+                        </a>
+                        <a href="#" class="btn btn-dark text-start px-3 py-2 rounded-3 text-secondary d-flex align-items-center gap-2" style="font-size: 13px;">
+                            <i class="fa-regular fa-star"></i> Favoritos
+                        </a>
+                        <a href="#" class="btn btn-dark text-start px-3 py-2 rounded-3 text-secondary d-flex align-items-center gap-2" style="font-size: 13px;">
+                            <i class="fa-regular fa-comment"></i> Mensajes
+                        </a>
+                        <a href="#" class="btn btn-dark text-start px-3 py-2 rounded-3 text-secondary d-flex align-items-center gap-2" style="font-size: 13px;">
+                            <i class="fa-regular fa-bell"></i> Notificaciones
+                        </a>
+                        <a href="#" class="btn btn-dark text-start px-3 py-2 rounded-3 text-secondary d-flex align-items-center gap-2" style="font-size: 13px;">
+                            <i class="fa-solid fa-shield-halved"></i> Seguridad
+                        </a>
+                        <a href="#" class="btn btn-dark text-start px-3 py-2 rounded-3 text-secondary d-flex align-items-center gap-2" style="font-size: 13px;">
+                            <i class="fa-regular fa-credit-card"></i> Suscripciones
+                        </a>
+                        <a href="#" class="btn btn-dark text-start px-3 py-2 rounded-3 text-secondary d-flex align-items-center gap-2" style="font-size: 13px;">
+                            <i class="fa-solid fa-gear"></i> Configuración
+                        </a>
+                        <a href="#" class="btn btn-dark text-start px-3 py-2 rounded-3 text-danger d-flex align-items-center gap-2 mt-2" style="font-size: 13px;">
+                            <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+                        </a>
+                    </div>
+                </aside>
+
+                <!-- DETALLES DEL PERFIL -->
+                <section class="col-lg-9">
+                    
+                    <!-- 4 TARJETAS DE ESTADÍSTICAS DEL GAMER -->
+                    <div class="row row-cols-2 row-cols-md-4 g-3 mb-4">
+                        <div class="col">
+                            <div class="bg-card border border-secondary border-opacity-25 rounded-4 p-3 text-center">
+                                <div class="text-primary mb-2"><i class="fa-solid fa-gamepad fs-4"></i></div>
+                                <h3 class="h4 fw-bold text-white mb-0">124</h3>
+                                <span class="text-uppercase text-secondary fw-semibold d-block mb-1" style="font-size: 9px; letter-spacing: 0.5px;">JUEGOS JUGADOS</span>
+                                <small class="text-secondary" style="font-size: 10px;">+12 este mes</small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="bg-card border border-secondary border-opacity-25 rounded-4 p-3 text-center">
+                                <div class="text-primary mb-2"><i class="fa-regular fa-clock fs-4"></i></div>
+                                <h3 class="h4 fw-bold text-white mb-0">3,250</h3>
+                                <span class="text-uppercase text-secondary fw-semibold d-block mb-1" style="font-size: 9px; letter-spacing: 0.5px;">HORAS TOTALES</span>
+                                <small class="text-secondary" style="font-size: 10px;">Promedio 4h/día</small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="bg-card border border-secondary border-opacity-25 rounded-4 p-3 text-center">
+                                <div class="text-primary mb-2"><i class="fa-solid fa-trophy fs-4"></i></div>
+                                <h3 class="h4 fw-bold text-white mb-0">1420</h3>
+                                <span class="text-uppercase text-secondary fw-semibold d-block mb-1" style="font-size: 9px; letter-spacing: 0.5px;">LOGROS OBTENIDOS</span>
+                                <small class="text-secondary" style="font-size: 10px;">85% Completado</small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="bg-card border border-secondary border-opacity-25 rounded-4 p-3 text-center">
+                                <div class="text-primary mb-2"><i class="fa-solid fa-bullseye fs-4"></i></div>
+                                <h3 class="h4 fw-bold text-white mb-0">Elite</h3>
+                                <span class="text-uppercase text-secondary fw-semibold d-block mb-1" style="font-size: 9px; letter-spacing: 0.5px;">RANGO DE HABILIDAD</span>
+                                <small class="text-secondary" style="font-size: 10px;">Top 5% Global</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PESTAÑAS / TABS -->
+                    <div class="bg-card border border-secondary border-opacity-25 rounded-pill p-1 mb-4 d-inline-flex gap-1" style="font-size: 12px;">
+                        <button class="btn btn-primary rounded-pill px-4 py-1 fw-semibold">Datos Personales</button>
+                        <button class="btn btn-dark text-secondary rounded-pill px-4 py-1 border-0">Actividad Reciente</button>
+                        <button class="btn btn-dark text-secondary rounded-pill px-4 py-1 border-0">Amigos</button>
+                    </div>
+
+                    <!-- INFORMACIÓN DE CUENTA -->
+                    <div class="bg-card border border-secondary border-opacity-25 rounded-4 p-4">
+                        <h2 class="h5 fw-bold text-white mb-1">Información de Cuenta</h2>
+                        <p class="text-secondary mb-4" style="font-size: 12px;">Gestiona tus detalles personales y preferencias de privacidad.</p>
+
+                        <div class="row g-4 mb-4">
+                            <div class="col-md-6 border-bottom border-secondary border-opacity-25 pb-3">
+                                <span class="text-uppercase text-secondary fw-semibold d-block mb-1" style="font-size: 10px; letter-spacing: 0.5px;">NOMBRE COMPLETO</span>
+                                <span class="fw-bold text-white" style="font-size: 14px;">Juan Pérez García</span>
+                            </div>
+                            <div class="col-md-6 border-bottom border-secondary border-opacity-25 pb-3">
+                                <span class="text-uppercase text-secondary fw-semibold d-block mb-1" style="font-size: 10px; letter-spacing: 0.5px;">CORREO ELECTRÓNICO</span>
+                                <span class="fw-bold text-white" style="font-size: 14px;">juan.perez@gamezone.com</span>
+                            </div>
+                            <div class="col-md-6 border-bottom border-secondary border-opacity-25 pb-3">
+                                <span class="text-uppercase text-secondary fw-semibold d-block mb-1" style="font-size: 10px; letter-spacing: 0.5px;">UBICACIÓN</span>
+                                <span class="fw-bold text-white" style="font-size: 14px;">Ciudad de México, MX</span>
+                            </div>
+                            <div class="col-md-6 border-bottom border-secondary border-opacity-25 pb-3">
+                                <span class="text-uppercase text-secondary fw-semibold d-block mb-1" style="font-size: 10px; letter-spacing: 0.5px;">PLATAFORMA PRINCIPAL</span>
+                                <span class="fw-bold text-white" style="font-size: 14px;">PC / PlayStation 5</span>
+                            </div>
+                        </div>
+
+                        <!-- BARRA DE PROGRESO DE NIVEL -->
+                        <div class="pt-2">
+                            <span class="text-uppercase text-primary fw-bold d-block mb-1" style="font-size: 11px; letter-spacing: 0.5px;">PROGRESO DE NIVEL</span>
+                            <div class="d-flex justify-content-between text-secondary mb-1" style="font-size: 11px;">
+                                <span>Siguiente nivel: 43</span>
+                                <span class="text-primary font-monospace">2,450 / 3,000 XP</span>
+                            </div>
+                            <div class="progress bg-dark border border-secondary border-opacity-25" style="height: 8px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Tu script personalizado -->
+    <!-- FOOTER COMPLETO DE GAMEZONE -->
+    <footer class="bg-black text-secondary pt-5 pb-4 border-top border-secondary border-opacity-25">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-lg-4">
+                    <h6 class="text-white fw-bold mb-3">SOBRE NOSOTROS</h6>
+                    <p class="small text-secondary pe-lg-4">
+                        GAMEZONE es tu destino definitivo para lo último en videojuegos, análisis críticos y una comunidad apasionada. Innovación y pasión gamer en cada píxel.
+                    </p>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6 class="text-white fw-bold mb-3">EXPLORAR</h6>
+                    <ul class="list-unstyled small d-flex flex-column gap-2">
+                        <li><a href="index.html" class="text-secondary text-decoration-none">Inicio</a></li>
+                        <li><a href="noticias.html" class="text-secondary text-decoration-none">Noticias</a></li>
+                        <li><a href="guias.html" class="text-secondary text-decoration-none">Guías</a></li>
+                        <li><a href="comunidad.html" class="text-secondary text-decoration-none">Comunidad</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <h6 class="text-white fw-bold mb-3">LEGAL</h6>
+                    <ul class="list-unstyled small d-flex flex-column gap-2">
+                        <li><a href="#" class="text-secondary text-decoration-none"><i class="fa-regular fa-shield me-2"></i>Política de Privacidad</a></li>
+                        <li><a href="#" class="text-secondary text-decoration-none"><i class="fa-regular fa-file-lines me-2"></i>Términos de Servicio</a></li>
+                        <li><a href="#" class="text-secondary text-decoration-none"><i class="fa-regular fa-envelope me-2"></i>Contacto de Prensa</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="text-white fw-bold mb-3">SÍGUENOS</h6>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="btn btn-dark rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="btn btn-dark rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" class="btn btn-dark rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="btn btn-dark rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-top border-secondary border-opacity-25 pt-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 small">
+                <p class="mb-0">&copy; 2026 GAMEZONE. Todos los derechos reservados.</p>
+                <div class="d-flex gap-3">
+                    <a href="#" class="text-secondary text-decoration-none">Cookies</a>
+                    <a href="#" class="text-secondary text-decoration-none">Accesibilidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
