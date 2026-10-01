@@ -39,9 +39,41 @@
                     <a href="buscar.html" class="btn text-white p-0" aria-label="Buscar">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </a>
-                    <a href="perfil.html" class="btn btn-profile text-decoration-none">
-                        <i class="fa-regular fa-user me-1"></i> Perfil <i class="fa-solid fa-chevron-down ms-1 small"></i>
-                    </a>
+                    <!-- GRUPO DE BOTÓN SPLIT -->
+<div class="btn-group">
+    <!-- 1. Enlace principal: Al hacer clic en "Perfil", redirige a perfil.html -->
+    <a href="perfil.html" class="btn btn-profile text-white text-decoration-none d-flex align-items-center">
+        <i class="fa-regular fa-user me-1"></i>
+    </a>
+
+    <!-- 2. Botón de la flecha: Al hacer clic en la flecha, despliega el menú -->
+    <button type="button" 
+            class="btn btn-profile text-white dropdown-toggle dropdown-toggle-split ps-1 pe-2" 
+            data-bs-toggle="dropdown" 
+            aria-expanded="false">
+        <span class="visually-hidden">Abrir opciones</span>
+    </button>
+
+    <!-- 3. Opciones del menú desplegable -->
+    <ul class="dropdown-menu dropdown-menu-end bg-dark border border-secondary border-opacity-25 shadow-lg mt-2">
+        <li>
+            <a class="dropdown-item text-white d-flex align-items-center gap-2 py-2" href="perfil.html">
+                <i class="fa-regular fa-id-card text-primary"></i> Ver Mi Perfil
+            </a>
+        </li>
+        <li><hr class="dropdown-divider border-secondary border-opacity-25"></li>
+<li>
+    <a class="dropdown-item text-white d-flex align-items-center gap-2 py-2" href="login.html">
+        <i class="fa-solid fa-right-to-bracket text-primary"></i> Iniciar Sesión
+    </a>
+</li>
+<li>
+    <a class="dropdown-item text-white d-flex align-items-center gap-2 py-2" href="registro.html">
+        <i class="fa-solid fa-user-plus text-primary"></i> Crear Cuenta
+    </a>
+</li>
+    </ul>
+</div>
                 </div>
             </div>
         </div>
