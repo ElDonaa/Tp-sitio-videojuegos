@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- CSS Personalizado -->
-    <link rel="stylesheet" href="/Tp-sitio-videojuegos/css/styles.css">
+<link rel="stylesheet" href="/Tp-sitio-videojuegos/clase5/css/styles.css">
 </head>
 <body>
         <header class="navbar navbar-expand-lg navbar-dark sticky-top custom-navbar">
