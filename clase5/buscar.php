@@ -1,5 +1,14 @@
 <?php
 $titulo_pagina = "buscar - GAMEZONE";
+
+// Variable para el término de búsqueda
+$termino_busqueda = "";
+
+// Verificamos si se envió información mediante el método GET
+if (isset($_GET['q'])) {
+    $termino_busqueda = trim($_GET['q']);
+}
+
 require_once 'includes/header.php';
 ?>
 
@@ -23,22 +32,24 @@ require_once 'includes/header.php';
                 </small>
             </div>
 
-            <!-- BARRA DE BÚSQUEDA Y CONTROLES -->
-            <div class="bg-card border border-secondary border-opacity-25 rounded-3 p-3 mb-3">
+            <!-- BARRA DE BÚSQUEDA Y CONTROLES (FORMULARIO GET) -->
+            <form action="" method="GET" class="bg-card border border-secondary border-opacity-25 rounded-3 p-3 mb-3">
                 <div class="row g-3 align-items-center">
                     <div class="col-lg-7">
                         <div class="input-group bg-dark border border-secondary border-opacity-25 rounded-3">
                             <span class="input-group-text bg-transparent border-0 text-secondary">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </span>
-                            <input type="text" class="form-control bg-transparent border-0 text-white shadow-none" value="Star" placeholder="Buscar juegos, géneros, creadores...">
-                            <button class="btn border-0 text-secondary" type="button"><i class="fa-solid fa-xmark"></i></button>
+                            <!-- Se agrega name="q" y la persistencia de datos con htmlspecialchars -->
+                            <input type="text" name="q" class="form-control bg-transparent border-0 text-white shadow-none" value="<?php echo htmlspecialchars($termino_busqueda, ENT_QUOTES, 'UTF-8'); ?>" placeholder="Buscar juegos, géneros, creadores...">
+                            <a href="buscar.php" class="btn border-0 text-secondary text-decoration-none d-flex align-items-center"><i class="fa-solid fa-xmark"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-5 d-flex align-items-center justify-content-lg-end gap-2">
+                        <button type="submit" class="btn btn-primary btn-sm px-4 fw-bold">Buscar</button>
                         <div class="btn-group me-2" role="group">
-                            <button class="btn btn-outline-secondary active"><i class="fa-solid fa-border-all"></i></button>
-                            <button class="btn btn-outline-secondary"><i class="fa-solid fa-list"></i></button>
+                            <button type="button" class="btn btn-outline-secondary active"><i class="fa-solid fa-border-all"></i></button>
+                            <button type="button" class="btn btn-outline-secondary"><i class="fa-solid fa-list"></i></button>
                         </div>
                         <select class="form-select bg-dark border-secondary border-opacity-25 text-white w-auto shadow-none small">
                             <option selected>Más relevantes</option>
@@ -56,7 +67,7 @@ require_once 'includes/header.php';
                     <span class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-25 rounded-pill px-2 py-1 fw-normal">RPG <i class="fa-solid fa-xmark ms-1 cursor-pointer"></i></span>
                     <span class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-25 rounded-pill px-2 py-1 fw-normal">&lt; 60€ <i class="fa-solid fa-xmark ms-1 cursor-pointer"></i></span>
                 </div>
-            </div>
+            </form>
 
             <!-- CONTENIDO PRINCIPAL: FILTROS + RESULTADOS -->
             <div class="row g-4 mt-1">
@@ -187,7 +198,7 @@ require_once 'includes/header.php';
                                 <span class="text-secondary">—</span>
                                 <input type="text" class="form-control form-control-sm bg-dark border-secondary border-opacity-25 text-white text-center" placeholder="€ Max">
                             </div>
-                            <button class="btn btn-outline-primary btn-sm w-100 mt-2 rounded-3">Aplicar rango</button>
+                            <button type="button" class="btn btn-outline-primary btn-sm w-100 mt-2 rounded-3">Aplicar rango</button>
                         </div>
 
                         <!-- BANNER TARJETA SORTEO SEMANAL -->
@@ -210,7 +221,7 @@ require_once 'includes/header.php';
                     
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <small class="text-secondary" style="font-size: 12px;">
-                            Mostrando <strong class="text-white">6</strong> de <strong class="text-white">1,420</strong> juegos encontrados para "Star"
+                            Mostrando resultados para: <strong class="text-white"><?php echo htmlspecialchars($termino_busqueda !== '' ? $termino_busqueda : 'Todos', ENT_QUOTES, 'UTF-8'); ?></strong>
                         </small>
                         <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 rounded-pill px-2 py-1 small" style="font-size: 10px;">
                             <i class="fa-solid fa-circle text-primary me-1" style="font-size: 6px;"></i> EN TIEMPO REAL
@@ -388,13 +399,13 @@ require_once 'includes/header.php';
 
                     <!-- PAGINACIÓN -->
                     <div class="d-flex justify-content-center align-items-center gap-2 mb-5">
-                        <button class="btn btn-dark border border-secondary border-opacity-25 text-secondary px-3 py-1 rounded-3 small" disabled>Anterior</button>
-                        <button class="btn btn-primary px-3 py-1 rounded-3 small fw-bold">1</button>
-                        <button class="btn btn-dark border border-secondary border-opacity-25 text-white px-3 py-1 rounded-3 small">2</button>
-                        <button class="btn btn-dark border border-secondary border-opacity-25 text-white px-3 py-1 rounded-3 small">3</button>
+                        <button type="button" class="btn btn-dark border border-secondary border-opacity-25 text-secondary px-3 py-1 rounded-3 small" disabled>Anterior</button>
+                        <button type="button" class="btn btn-primary px-3 py-1 rounded-3 small fw-bold">1</button>
+                        <button type="button" class="btn btn-dark border border-secondary border-opacity-25 text-white px-3 py-1 rounded-3 small">2</button>
+                        <button type="button" class="btn btn-dark border border-secondary border-opacity-25 text-white px-3 py-1 rounded-3 small">3</button>
                         <span class="text-secondary px-1">...</span>
-                        <button class="btn btn-dark border border-secondary border-opacity-25 text-white px-3 py-1 rounded-3 small">42</button>
-                        <button class="btn btn-dark border border-secondary border-opacity-25 text-white px-3 py-1 rounded-3 small">Siguiente</button>
+                        <button type="button" class="btn btn-dark border border-secondary border-opacity-25 text-white px-3 py-1 rounded-3 small">42</button>
+                        <button type="button" class="btn btn-dark border border-secondary border-opacity-25 text-white px-3 py-1 rounded-3 small">Siguiente</button>
                     </div>
 
                     <!-- ESTADÍSTICAS INFERIORES / METRICAS -->
@@ -422,7 +433,7 @@ require_once 'includes/header.php';
                                 <small class="text-secondary" style="font-size: 11px;">Reseñas de expertos verificadas</small>
                             </div>
                             <div class="col-md-3 text-md-end">
-                                <button class="btn btn-dark border border-secondary border-opacity-25 text-white rounded-3 small px-3 py-2">
+                                <button type="button" class="btn btn-dark border border-secondary border-opacity-25 text-white rounded-3 small px-3 py-2">
                                     Ver estadísticas completas
                                 </button>
                             </div>
@@ -435,6 +446,6 @@ require_once 'includes/header.php';
         </div>
     </main>
 
-  <?php
+<?php
 require_once 'includes/footer.php';
 ?>

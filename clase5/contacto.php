@@ -1,5 +1,37 @@
 <?php
 $titulo_pagina = "contacto - GAMEZONE";
+
+// Variables para control de estado y persistencia
+$mensaje_estado = "";
+$nombre_val = "";
+$email_val = "";
+$mensaje_text = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // 1. Captura y sanitización básica con trim
+    $nombre_val = trim($_POST['nombre'] ?? '');
+    $email_val = trim($_POST['email'] ?? '');
+    $mensaje_text = trim($_POST['mensaje'] ?? '');
+
+    // 2. Validación en servidor (campos vacíos y formato de email)
+    if (empty($nombre_val) || empty($email_val) || empty($mensaje_text)) {
+        $mensaje_estado = "<div class='alert alert-danger mb-4'>Por favor, completa todos los campos obligatorios.</div>";
+    } elseif (!filter_var($email_val, FILTER_VALIDATE_EMAIL)) {
+        $mensaje_estado = "<div class='alert alert-danger mb-4'>El correo electrónico ingresado no es válido.</div>";
+    } else {
+        // 3. Sanitización estricta contra XSS con htmlspecialchars (Output Encoding)
+        $nombre_seguro = htmlspecialchars($nombre_val, ENT_QUOTES, 'UTF-8');
+        $email_seguro = htmlspecialchars($email_val, ENT_QUOTES, 'UTF-8');
+        
+        $mensaje_estado = "<div class='alert alert-success mb-4'>¡Mensaje enviado con éxito, <strong>$nombre_seguro</strong>! Te responderemos a <strong>$email_seguro</strong> a la brevedad.</div>";
+        
+        // Limpiamos los campos tras el envío exitoso
+        $nombre_val = "";
+        $email_val = "";
+        $mensaje_text = "";
+    }
+}
+
 require_once 'includes/header.php';
 ?>
 
@@ -20,11 +52,14 @@ require_once 'includes/header.php';
                 </p>
             </div>
 
+            <!-- MOSTRAR MENSAJE DE ÉXITO O ERROR -->
+            <?php echo $mensaje_estado; ?>
+
             <div class="row g-5">
                 
                 <!-- COLUMNA IZQUIERDA: FORMULARIO -->
                 <div class="col-lg-6">
-                    <form>
+                    <form action="" method="POST">
                         <!-- NOMBRE -->
                         <div class="mb-4">
                             <label for="nombre" class="form-label text-uppercase fw-bold text-white small" style="font-size: 11px; letter-spacing: 0.5px;">NOMBRE</label>
@@ -32,7 +67,8 @@ require_once 'includes/header.php';
                                 <span class="input-group-text bg-transparent border-0 text-secondary">
                                     <i class="fa-regular fa-user"></i>
                                 </span>
-                                <input type="text" id="nombre" class="form-control bg-transparent border-0 text-white shadow-none py-2" placeholder="Tu nombre completo">
+                                <!-- Se añade el name="nombre" y la persistencia con htmlspecialchars -->
+                                <input type="text" id="nombre" name="nombre" class="form-control bg-transparent border-0 text-white shadow-none py-2" placeholder="Tu nombre completo" value="<?php echo htmlspecialchars($nombre_val, ENT_QUOTES, 'UTF-8'); ?>">
                             </div>
                         </div>
 
@@ -43,7 +79,8 @@ require_once 'includes/header.php';
                                 <span class="input-group-text bg-transparent border-0 text-secondary">
                                     <i class="fa-regular fa-envelope"></i>
                                 </span>
-                                <input type="email" id="email" class="form-control bg-transparent border-0 text-white shadow-none py-2" placeholder="tu@email.com">
+                                <!-- Se añade el name="email" y la persistencia -->
+                                <input type="email" id="email" name="email" class="form-control bg-transparent border-0 text-white shadow-none py-2" placeholder="tu@email.com" value="<?php echo htmlspecialchars($email_val, ENT_QUOTES, 'UTF-8'); ?>">
                             </div>
                         </div>
 
@@ -54,7 +91,8 @@ require_once 'includes/header.php';
                                 <span class="input-group-text bg-transparent border-0 text-secondary align-items-start pt-2">
                                     <i class="fa-regular fa-comment"></i>
                                 </span>
-                                <textarea id="mensaje" class="form-control bg-transparent border-0 text-white shadow-none py-2" rows="5" placeholder="Escribe tu mensaje aquí..."></textarea>
+                                <!-- Se añade el name="mensaje" y la persistencia dentro del textarea -->
+                                <textarea id="mensaje" name="mensaje" class="form-control bg-transparent border-0 text-white shadow-none py-2" rows="5" placeholder="Escribe tu mensaje aquí..."><?php echo htmlspecialchars($mensaje_text, ENT_QUOTES, 'UTF-8'); ?></textarea>
                             </div>
                         </div>
 
@@ -142,9 +180,6 @@ require_once 'includes/header.php';
         </div>
     </main>
 
-
-</body>
-</html>
 <?php
 require_once 'includes/footer.php';
 ?>
