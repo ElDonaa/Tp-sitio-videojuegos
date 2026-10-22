@@ -1,84 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explorar Catálogo - GAMEZONE</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- FontAwesome Iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- CSS Personalizado -->
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body class="bg-dark text-white">
-
-    <!-- HEADER / NAVBAR -->
-    <header class="navbar navbar-expand-lg navbar-dark sticky-top custom-navbar">
-        <div class="container">
-            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
-                <i class="fa-solid fa-gamepad text-primary"></i> GAMEZONE
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-menu mx-auto mb-2 mb-lg-0">
-                <li><a href="index.html" class="nav-link-custom">Inicio</a></li>
-                <li><a href="juegos.html" class="nav-link-custom">Juegos</a></li>
-                <li><a href="plataformas.html" class="nav-link-custom">Plataformas</a></li>
-                <li><a href="noticias.html" class="nav-link-custom">Noticias</a></li>
-                <li><a href="analisis.html" class="nav-link-custom">Análisis</a></li>
-                <li><a href="guias.html" class="nav-link-custom">Guías</a></li>
-                <li><a href="contacto.html" class="nav-link-custom">Contacto</a></li>
-                </ul>
-
-                <div class="d-flex align-items-center gap-3">
-                    <a href="buscar.html" class="btn text-white p-0" aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    <!-- GRUPO DE BOTÓN SPLIT -->
-<div class="btn-group">
-    <!-- 1. Enlace principal: Al hacer clic en "Perfil", redirige a perfil.html -->
-    <a href="perfil.html" class="btn btn-profile text-white text-decoration-none d-flex align-items-center">
-        <i class="fa-regular fa-user me-1"></i>
-    </a>
-
-    <!-- 2. Botón de la flecha: Al hacer clic en la flecha, despliega el menú -->
-    <button type="button" 
-            class="btn btn-profile text-white dropdown-toggle dropdown-toggle-split ps-1 pe-2" 
-            data-bs-toggle="dropdown" 
-            aria-expanded="false">
-        <span class="visually-hidden">Abrir opciones</span>
-    </button>
-
-    <!-- 3. Opciones del menú desplegable -->
-    <ul class="dropdown-menu dropdown-menu-end bg-dark border border-secondary border-opacity-25 shadow-lg mt-2">
-        <li>
-            <a class="dropdown-item text-white d-flex align-items-center gap-2 py-2" href="perfil.html">
-                <i class="fa-regular fa-id-card text-primary"></i> Ver Mi Perfil
-            </a>
-        </li>
-        <li><hr class="dropdown-divider border-secondary border-opacity-25"></li>
-<li>
-    <a class="dropdown-item text-white d-flex align-items-center gap-2 py-2" href="login.html">
-        <i class="fa-solid fa-right-to-bracket text-primary"></i> Iniciar Sesión
-    </a>
-</li>
-<li>
-    <a class="dropdown-item text-white d-flex align-items-center gap-2 py-2" href="registro.html">
-        <i class="fa-solid fa-user-plus text-primary"></i> Crear Cuenta
-    </a>
-</li>
-    </ul>
-</div>
-                </div>
-            </div>
-        </div>
-    </header>
+<?php
+$titulo_pagina = "buscar - GAMEZONE";
+require_once 'includes/header.php';
+?>
 
     <!-- SECCIÓN BÚSQUEDA Y BREADCRUMB -->
     <main class="py-4">
@@ -512,56 +435,6 @@
         </div>
     </main>
 
-    <!-- FOOTER COMPLETO DE GAMEZONE -->
-    <footer class="bg-black text-secondary pt-5 pb-4 border-top border-secondary border-opacity-25">
-        <div class="container">
-            <div class="row g-4 mb-4">
-                <div class="col-lg-4">
-                    <h6 class="text-white fw-bold mb-3">SOBRE NOSOTROS</h6>
-                    <p class="small text-secondary pe-lg-4">
-                        GAMEZONE es tu destino definitivo para lo último en videojuegos, análisis críticos y una comunidad apasionada. Innovación y pasión gamer en cada píxel.
-                    </p>
-                </div>
-                <div class="col-6 col-lg-2">
-                    <h6 class="text-white fw-bold mb-3">EXPLORAR</h6>
-                    <ul class="list-unstyled small d-flex flex-column gap-2">
-                        <li><a href="index.html" class="text-secondary text-decoration-none">Inicio</a></li>
-                        <li><a href="noticias.html" class="text-secondary text-decoration-none">Noticias</a></li>
-                        <li><a href="guias.html" class="text-secondary text-decoration-none">Guías</a></li>
-                        <li><a href="comunidad.html" class="text-secondary text-decoration-none">Comunidad</a></li>
-                    </ul>
-                </div>
-                <div class="col-6 col-lg-3">
-                    <h6 class="text-white fw-bold mb-3">LEGAL</h6>
-                    <ul class="list-unstyled small d-flex flex-column gap-2">
-                        <li><a href="#" class="text-secondary text-decoration-none"><i class="fa-regular fa-shield me-2"></i>Política de Privacidad</a></li>
-                        <li><a href="#" class="text-secondary text-decoration-none"><i class="fa-regular fa-file-lines me-2"></i>Términos de Servicio</a></li>
-                        <li><a href="#" class="text-secondary text-decoration-none"><i class="fa-regular fa-envelope me-2"></i>Contacto de Prensa</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3">
-                    <h6 class="text-white fw-bold mb-3">SÍGUENOS</h6>
-                    <div class="d-flex gap-2">
-                        <a href="#" class="btn btn-dark rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="btn btn-dark rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="#" class="btn btn-dark rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="btn btn-dark rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;"><i class="fa-brands fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border-top border-secondary border-opacity-25 pt-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 small">
-                <p class="mb-0">&copy; 2026 GAMEZONE. Todos los derechos reservados.</p>
-                <div class="d-flex gap-3">
-                    <a href="#" class="text-secondary text-decoration-none">Cookies</a>
-                    <a href="#" class="text-secondary text-decoration-none">Accesibilidad</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
-</body>
-</html>
+  <?php
+require_once 'includes/footer.php';
+?>
