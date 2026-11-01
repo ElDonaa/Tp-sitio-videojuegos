@@ -1,5 +1,49 @@
 <?php
-$titulo_pagina = "registro - GAMEZONE";
+$titulo_pagina = "Registro - GAMEZONE";
+
+// 1. Incluimos la conexión a la base de datos
+require_once 'conexion.php';
+
+$mensaje = "";
+
+// 2. Procesamos el formulario cuando el usuario presiona "Crear mi Cuenta"
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nombre = trim($_POST['nombre']);
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
+    $id_rol = 2; // ID por defecto para usuario común en tu tabla roles (ajusta si es necesario)
+
+    // Validar que las contraseñas coincidan
+    if ($password !== $confirm_password) {
+        $mensaje = "Las contraseñas no coinciden.";
+    } else {
+        // Verificar si el correo electrónico ya existe en la BD usando id_usuario
+        $sql_check = "SELECT id_usuario FROM usuarios WHERE email = ?";
+        $stmt = $pdo->prepare($sql_check);
+        $stmt->execute([$email]);
+
+        if ($stmt->rowCount() > 0) {
+            $mensaje = "El correo electrónico ya está registrado.";
+        } else {
+            // Encriptar la contraseña de forma segura (Requisito OWASP del TP8)
+            $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+
+            // Insertar usuario usando consultas preparadas PDO con id_rol
+            $sql = "INSERT INTO usuarios (nombre, email, password, id_rol) VALUES (?, ?, ?, ?)";
+            $stmt = $pdo->prepare($sql);
+            
+            if ($stmt->execute([$nombre, $email, $passwordHash, $id_rol])) {
+                // Redirigir al login con aviso de éxito
+                header("Location: login.php?registro=exitoso");
+                exit();
+            } else {
+                $mensaje = "Error al registrar el usuario en la base de datos.";
+            }
+        }
+    }
+}
+
 require_once 'includes/header.php';
 ?>
 
@@ -21,43 +65,22 @@ require_once 'includes/header.php';
                             <p class="text-secondary small mb-0">Crea tu cuenta gamer y accede a estadísticas, comunidad y análisis exclusivos.</p>
                         </div>
 
-                        <!-- REGISTRO RÁPIDO CON REDES / PLATAFORMAS -->
-                        <div class="d-flex gap-2 mb-4">
-                            <button type="button" class="btn btn-dark border border-secondary border-opacity-25 text-white flex-fill d-flex align-items-center justify-content-center gap-2 py-2 small">
-                                <i class="fa-brands fa-google text-danger"></i> Google
-                            </button>
-                            <button type="button" class="btn btn-dark border border-secondary border-opacity-25 text-white flex-fill d-flex align-items-center justify-content-center gap-2 py-2 small">
-                                <i class="fa-brands fa-discord text-primary"></i> Discord
-                            </button>
-                            <button type="button" class="btn btn-dark border border-secondary border-opacity-25 text-white flex-fill d-flex align-items-center justify-content-center gap-2 py-2 small">
-                                <i class="fa-brands fa-steam text-light"></i> Steam
-                            </button>
-                        </div>
-
-                        <div class="d-flex align-items-center mb-4">
-                            <hr class="flex-grow-1 border-secondary border-opacity-25 my-0">
-                            <span class="px-3 text-secondary" style="font-size: 11px;">O REGÍSTRATE CON TU EMAIL</span>
-                            <hr class="flex-grow-1 border-secondary border-opacity-25 my-0">
-                        </div>
+                        <!-- ALERTA DE ERROR SI LA HAY -->
+                        <?php if(!empty($mensaje)): ?>
+                            <div class="alert alert-danger py-2 small mb-4">
+                                <i class="fa-solid fa-triangle-exclamation me-1"></i> <?php echo $mensaje; ?>
+                            </div>
+                        <?php endif; ?>
 
                         <!-- FORMULARIO DE REGISTRO -->
-                        <form action="#" method="POST" class="d-flex flex-column gap-3">
+                        <form action="registro.php" method="POST" class="d-flex flex-column gap-3">
                             
                             <!-- Nombre Completo -->
                             <div>
                                 <label for="nombre" class="form-label text-secondary fw-semibold mb-1" style="font-size: 11px; letter-spacing: 0.5px;">NOMBRE COMPLETO</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-dark border-secondary border-opacity-25 text-secondary"><i class="fa-regular fa-user"></i></span>
-                                    <input type="text" id="nombre" class="form-control bg-dark border-secondary border-opacity-25 text-white" placeholder="Ej. Juan Pérez" required>
-                                </div>
-                            </div>
-
-                            <!-- Nombre de Usuario / GamerTag -->
-                            <div>
-                                <label for="gamertag" class="form-label text-secondary fw-semibold mb-1" style="font-size: 11px; letter-spacing: 0.5px;">GAMERTAG / USUARIO</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-dark border-secondary border-opacity-25 text-secondary"><i class="fa-solid fa-at"></i></span>
-                                    <input type="text" id="gamertag" class="form-control bg-dark border-secondary border-opacity-25 text-white" placeholder="Ej. GamerPro_99" required>
+                                    <input type="text" id="nombre" name="nombre" class="form-control bg-dark border-secondary border-opacity-25 text-white" placeholder="Ej. Juan Pérez" required>
                                 </div>
                             </div>
 
@@ -66,22 +89,7 @@ require_once 'includes/header.php';
                                 <label for="email" class="form-label text-secondary fw-semibold mb-1" style="font-size: 11px; letter-spacing: 0.5px;">CORREO ELECTRÓNICO</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-dark border-secondary border-opacity-25 text-secondary"><i class="fa-regular fa-envelope"></i></span>
-                                    <input type="email" id="email" class="form-control bg-dark border-secondary border-opacity-25 text-white" placeholder="ejemplo@gamezone.com" required>
-                                </div>
-                            </div>
-
-                            <!-- Selección de Plataforma Principal -->
-                            <div>
-                                <label for="plataforma" class="form-label text-secondary fw-semibold mb-1" style="font-size: 11px; letter-spacing: 0.5px;">PLATAFORMA PRINCIPAL</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-dark border-secondary border-opacity-25 text-secondary"><i class="fa-solid fa-gamepad"></i></span>
-                                    <select id="plataforma" class="form-select bg-dark border-secondary border-opacity-25 text-white">
-                                        <option value="" selected disabled>Selecciona tu plataforma</option>
-                                        <option value="pc">PC Gamer</option>
-                                        <option value="ps5">PlayStation 5</option>
-                                        <option value="xbox">Xbox Series X/S</option>
-                                        <option value="switch">Nintendo Switch</option>
-                                    </select>
+                                    <input type="email" id="email" name="email" class="form-control bg-dark border-secondary border-opacity-25 text-white" placeholder="ejemplo@gamezone.com" required>
                                 </div>
                             </div>
 
@@ -90,7 +98,7 @@ require_once 'includes/header.php';
                                 <label for="password" class="form-label text-secondary fw-semibold mb-1" style="font-size: 11px; letter-spacing: 0.5px;">CONTRASEÑA</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-dark border-secondary border-opacity-25 text-secondary"><i class="fa-solid fa-lock"></i></span>
-                                    <input type="password" id="password" class="form-control bg-dark border-secondary border-opacity-25 text-white" placeholder="••••••••" required>
+                                    <input type="password" id="password" name="password" class="form-control bg-dark border-secondary border-opacity-25 text-white" placeholder="••••••••" required>
                                 </div>
                             </div>
 
@@ -99,7 +107,7 @@ require_once 'includes/header.php';
                                 <label for="confirm_password" class="form-label text-secondary fw-semibold mb-1" style="font-size: 11px; letter-spacing: 0.5px;">CONFIRMAR CONTRASEÑA</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-dark border-secondary border-opacity-25 text-secondary"><i class="fa-solid fa-shield-halved"></i></span>
-                                    <input type="password" id="confirm_password" class="form-control bg-dark border-secondary border-opacity-25 text-white" placeholder="••••••••" required>
+                                    <input type="password" id="confirm_password" name="confirm_password" class="form-control bg-dark border-secondary border-opacity-25 text-white" placeholder="••••••••" required>
                                 </div>
                             </div>
 
@@ -120,7 +128,7 @@ require_once 'includes/header.php';
                         <!-- ENLACE A LOGIN -->
                         <div class="text-center mt-4 pt-2 border-top border-secondary border-opacity-25">
                             <span class="text-secondary small">¿Ya tienes una cuenta?</span>
-                            <a href="login.html" class="text-primary fw-bold text-decoration-none small ms-1">Inicia sesión aquí</a>
+                            <a href="login.php" class="text-primary fw-bold text-decoration-none small ms-1">Inicia sesión aquí</a>
                         </div>
 
                     </div>
@@ -130,9 +138,6 @@ require_once 'includes/header.php';
         </div>
     </main>
 
-    
-</body>
-</html>
 <?php
 require_once 'includes/footer.php';
 ?>

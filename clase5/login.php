@@ -1,5 +1,39 @@
 <?php
-$titulo_pagina = "login - GAMEZONE";
+$titulo_pagina = "Iniciar Sesión - GAMEZONE";
+
+require_once 'conexion.php';
+session_start();
+
+$error = "";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
+
+    // Buscar el usuario en la base de datos por su correo
+    $sql = "SELECT * FROM usuarios WHERE email = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$email]);
+    $usuario = $stmt->fetch();
+
+    // Validar contraseña usando password_verify (Requisito TP8)
+    if ($usuario && password_verify($password, $usuario['password'])) {
+        // Mitigar ataques de fijación de sesión
+        session_regenerate_id(true);
+
+        // Guardar datos clave en la superglobal $_SESSION utilizando las columnas reales
+        $_SESSION['usuario_id'] = $usuario['id_usuario'];
+        $_SESSION['usuario_nombre'] = $usuario['nombre'];
+        $_SESSION['rol'] = $usuario['id_rol'];
+
+        // Redirigir al inicio o panel principal
+        header("Location: index.php");
+        exit();
+    } else {
+        $error = "Correo electrónico o contraseña incorrectos.";
+    }
+}
+
 require_once 'includes/header.php';
 ?>
 
@@ -21,34 +55,29 @@ require_once 'includes/header.php';
                             <p class="text-secondary small mb-0">Ingresa a tu cuenta para continuar en GAMEZONE.</p>
                         </div>
 
-                        <!-- ACCESO RÁPIDO -->
-                        <div class="d-flex gap-2 mb-4">
-                            <button type="button" class="btn btn-dark border border-secondary border-opacity-25 text-white flex-fill d-flex align-items-center justify-content-center gap-2 py-2 small">
-                                <i class="fa-brands fa-google text-danger"></i> Google
-                            </button>
-                            <button type="button" class="btn btn-dark border border-secondary border-opacity-25 text-white flex-fill d-flex align-items-center justify-content-center gap-2 py-2 small">
-                                <i class="fa-brands fa-discord text-primary"></i> Discord
-                            </button>
-                            <button type="button" class="btn btn-dark border border-secondary border-opacity-25 text-white flex-fill d-flex align-items-center justify-content-center gap-2 py-2 small">
-                                <i class="fa-brands fa-steam text-light"></i> Steam
-                            </button>
-                        </div>
+                        <!-- AVISO DE REGISTRO EXITOSO -->
+                        <?php if(isset($_GET['registro']) && $_GET['registro'] == 'exitoso'): ?>
+                            <div class="alert alert-success py-2 small mb-4">
+                                <i class="fa-solid fa-check-circle me-1"></i> ¡Registro exitoso! Ya puedes iniciar sesión.
+                            </div>
+                        <?php endif; ?>
 
-                        <div class="d-flex align-items-center mb-4">
-                            <hr class="flex-grow-1 border-secondary border-opacity-25 my-0">
-                            <span class="px-3 text-secondary" style="font-size: 11px;">O INGRESA CON TU CORREO</span>
-                            <hr class="flex-grow-1 border-secondary border-opacity-25 my-0">
-                        </div>
+                        <!-- ALERTA DE ERROR -->
+                        <?php if(!empty($error)): ?>
+                            <div class="alert alert-danger py-2 small mb-4">
+                                <i class="fa-solid fa-triangle-exclamation me-1"></i> <?php echo $error; ?>
+                            </div>
+                        <?php endif; ?>
 
                         <!-- FORMULARIO DE LOGIN -->
-                        <form action="perfil.html" method="GET" class="d-flex flex-column gap-3">
+                        <form action="login.php" method="POST" class="d-flex flex-column gap-3">
                             
-                            <!-- Correo o Usuario -->
+                            <!-- Correo Electrónico -->
                             <div>
-                                <label for="login-email" class="form-label text-secondary fw-semibold mb-1" style="font-size: 11px; letter-spacing: 0.5px;">CORREO O GAMERTAG</label>
+                                <label for="login-email" class="form-label text-secondary fw-semibold mb-1" style="font-size: 11px; letter-spacing: 0.5px;">CORREO ELECTRÓNICO</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-dark border-secondary border-opacity-25 text-secondary"><i class="fa-regular fa-envelope"></i></span>
-                                    <input type="text" id="login-email" class="form-control bg-dark border-secondary border-opacity-25 text-white" placeholder="ejemplo@gamezone.com o GamerTag" required>
+                                    <input type="email" id="login-email" name="email" class="form-control bg-dark border-secondary border-opacity-25 text-white" placeholder="ejemplo@gamezone.com" required>
                                 </div>
                             </div>
 
@@ -60,7 +89,7 @@ require_once 'includes/header.php';
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-text bg-dark border-secondary border-opacity-25 text-secondary"><i class="fa-solid fa-lock"></i></span>
-                                    <input type="password" id="login-password" class="form-control bg-dark border-secondary border-opacity-25 text-white" placeholder="••••••••" required>
+                                    <input type="password" id="login-password" name="password" class="form-control bg-dark border-secondary border-opacity-25 text-white" placeholder="••••••••" required>
                                 </div>
                             </div>
 
@@ -81,7 +110,7 @@ require_once 'includes/header.php';
                         <!-- ENLACE A REGISTRO -->
                         <div class="text-center mt-4 pt-3 border-top border-secondary border-opacity-25">
                             <span class="text-secondary small">¿Aún no tienes una cuenta?</span>
-                            <a href="registro.html" class="text-primary fw-bold text-decoration-none small ms-1">Regístrate aquí</a>
+                            <a href="registro.php" class="text-primary fw-bold text-decoration-none small ms-1">Regístrate aquí</a>
                         </div>
 
                     </div>
@@ -91,9 +120,6 @@ require_once 'includes/header.php';
         </div>
     </main>
 
-    
-</body>
-</html>
 <?php
 require_once 'includes/footer.php';
 ?>

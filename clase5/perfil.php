@@ -1,5 +1,12 @@
 <?php
-$titulo_pagina = "perfil - GAMEZONE";
+require_once 'auth_guard.php';
+$titulo_pagina = "Mi Perfil - GAMEZONE";
+require_once 'includes/header.php';
+?>
+
+<?php
+require_once 'auth_guard.php';
+$titulo_pagina = "Mi Perfil - GAMEZONE";
 require_once 'includes/header.php';
 ?>
 
