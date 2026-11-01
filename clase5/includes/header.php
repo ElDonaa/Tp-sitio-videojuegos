@@ -1,3 +1,9 @@
+<?php
+// Aseguramos que la sesión esté iniciada para poder validar el estado del usuario
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,10 +19,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- CSS Personalizado -->
-<link rel="stylesheet" href="/Tp-sitio-videojuegos/clase5/css/styles.css">
+    <link rel="stylesheet" href="/Tp-sitio-videojuegos/clase5/css/styles.css">
 </head>
 <body>
-        <header class="navbar navbar-expand-lg navbar-dark sticky-top custom-navbar">
+    <header class="navbar navbar-expand-lg navbar-dark sticky-top custom-navbar">
         <div class="container">
             <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
                 <i class="fa-solid fa-gamepad text-primary"></i> GAMEZONE
@@ -27,57 +33,65 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-menu mx-auto mb-2 mb-lg-0">
-                <li><a href="index.php" class="nav-link-custom">Inicio</a></li>
-                <li><a href="juegos.php" class="nav-link-custom">Juegos</a></li>
-                <li><a href="plataformas.php" class="nav-link-custom">Plataformas</a></li>
-                <li><a href="noticias.php" class="nav-link-custom">Noticias</a></li>
-                <li><a href="analisis.php" class="nav-link-custom">Análisis</a></li>
-                <li><a href="guias.php" class="nav-link-custom">Guías</a></li>
-                <li><a href="contacto.php" class="nav-link-custom">Contacto</a></li>
-            </ul>
+                <ul class="navbar-menu mx-auto mb-2 mb-lg-0">
+                    <li><a href="index.php" class="nav-link-custom">Inicio</a></li>
+                    <li><a href="juegos.php" class="nav-link-custom">Juegos</a></li>
+                    <li><a href="plataformas.php" class="nav-link-custom">Plataformas</a></li>
+                    <li><a href="noticias.php" class="nav-link-custom">Noticias</a></li>
+                    <li><a href="analisis.php" class="nav-link-custom">Análisis</a></li>
+                    <li><a href="guias.php" class="nav-link-custom">Guías</a></li>
+                    <li><a href="contacto.php" class="nav-link-custom">Contacto</a></li>
+                </ul>
 
                 <div class="d-flex align-items-center gap-3">
                     <a href="buscar.php" class="btn text-white p-0" aria-label="Buscar">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </a>
                     
-<div class="btn-group">
-   
-    <a href="perfil.php" class="btn btn-profile text-white text-decoration-none d-flex align-items-center">
-        <i class="fa-regular fa-user me-1"></i> 
-    </a>
+                    <div class="btn-group">
+                        <a href="perfil.php" class="btn btn-profile text-white text-decoration-none d-flex align-items-center">
+                            <i class="fa-regular fa-user me-1"></i> 
+                        </a>
 
-   
-    <button type="button" 
-            class="btn btn-profile text-white dropdown-toggle dropdown-toggle-split ps-1 pe-2" 
-            data-bs-toggle="dropdown" 
-            aria-expanded="false">
-        <span class="visually-hidden">Abrir opciones</span>
-    </button>
+                        <button type="button" 
+                                class="btn btn-profile text-white dropdown-toggle dropdown-toggle-split ps-1 pe-2" 
+                                data-bs-toggle="dropdown" 
+                                aria-expanded="false">
+                            <span class="visually-hidden">Abrir opciones</span>
+                        </button>
 
-    
-    <ul class="dropdown-menu dropdown-menu-end bg-dark border border-secondary border-opacity-25 shadow-lg mt-2">
-        <li>
-            <a class="dropdown-item text-white d-flex align-items-center gap-2 py-2" href="perfil.php">
-                <i class="fa-regular fa-id-card text-primary"></i> Ver Mi Perfil
-            </a>
-        </li>
-        <li><hr class="dropdown-divider border-secondary border-opacity-25"></li>
-        <li>
-    <a class="dropdown-item text-white d-flex align-items-center gap-2 py-2" href="login.php">
-        <i class="fa-solid fa-right-to-bracket text-primary"></i> Iniciar Sesión
-    </a>
-</li>
-        <li>
-    <a class="dropdown-item text-white d-flex align-items-center gap-2 py-2" href="registro.php">
-        <i class="fa-solid fa-user-plus text-primary"></i> Crear Cuenta
-    </a>
-</li>
-    </ul>
-</div>
+                        <ul class="dropdown-menu dropdown-menu-end bg-dark border border-secondary border-opacity-25 shadow-lg mt-2">
+                            <?php if (isset($_SESSION['usuario_id'])): ?>
+                                <!-- Si el usuario YA INICIÓ SESIÓN -->
+                                <li>
+                                    <a class="dropdown-item text-white d-flex align-items-center gap-2 py-2" href="perfil.php">
+                                        <i class="fa-regular fa-id-card text-primary"></i> Ver Mi Perfil
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider border-secondary border-opacity-25"></li>
+                                <li>
+                                    <a class="dropdown-item text-white d-flex align-items-center gap-2 py-2" href="logout.php">
+                                        <i class="fa-solid fa-right-from-bracket text-primary"></i> Cerrar Sesión
+                                    </a>
+                                </li>
+                            <?php else: ?>
+                                <!-- Si el usuario NO HA INICIADO SESIÓN -->
+                                <li>
+                                    <a class="dropdown-item text-white d-flex align-items-center gap-2 py-2" href="login.php">
+                                        <i class="fa-solid fa-right-to-bracket text-primary"></i> Iniciar Sesión
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-white d-flex align-items-center gap-2 py-2" href="registro.php">
+                                        <i class="fa-solid fa-user-plus text-primary"></i> Crear Cuenta
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 </body>
+</html>
