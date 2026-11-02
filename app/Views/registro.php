@@ -1,50 +1,11 @@
 <?php
 $titulo_pagina = "Registro - GAMEZONE";
 
-// 1. Incluimos la conexión a la base de datos
-require_once 'conexion.php';
+// Nota: La lógica de procesamiento, validaciones y conexión 
+// ya se manejan en AuthController.php y UsuarioModel.php. 
+// Aquí solo mostramos la vista y usamos la variable $mensaje si existe.
 
-$mensaje = "";
-
-// 2. Procesamos el formulario cuando el usuario presiona "Crear mi Cuenta"
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nombre = trim($_POST['nombre']);
-    $email = trim($_POST['email']);
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
-    $id_rol = 2; // ID por defecto para usuario común en tu tabla roles (ajusta si es necesario)
-
-    // Validar que las contraseñas coincidan
-    if ($password !== $confirm_password) {
-        $mensaje = "Las contraseñas no coinciden.";
-    } else {
-        // Verificar si el correo electrónico ya existe en la BD usando id_usuario
-        $sql_check = "SELECT id_usuario FROM usuarios WHERE email = ?";
-        $stmt = $pdo->prepare($sql_check);
-        $stmt->execute([$email]);
-
-        if ($stmt->rowCount() > 0) {
-            $mensaje = "El correo electrónico ya está registrado.";
-        } else {
-            // Encriptar la contraseña de forma segura (Requisito OWASP del TP8)
-            $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-
-            // Insertar usuario usando consultas preparadas PDO con id_rol
-            $sql = "INSERT INTO usuarios (nombre, email, password, id_rol) VALUES (?, ?, ?, ?)";
-            $stmt = $pdo->prepare($sql);
-            
-            if ($stmt->execute([$nombre, $email, $passwordHash, $id_rol])) {
-                // Redirigir al login con aviso de éxito
-                header("Location: login.php?registro=exitoso");
-                exit();
-            } else {
-                $mensaje = "Error al registrar el usuario en la base de datos.";
-            }
-        }
-    }
-}
-
-require_once 'includes/header.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tp-framework-videojuegos/Tp-sitio-videojuegos/includes/header.php';
 ?>
 
     <!-- SECCIÓN PRINCIPAL: CREAR CUENTA -->
@@ -73,7 +34,7 @@ require_once 'includes/header.php';
                         <?php endif; ?>
 
                         <!-- FORMULARIO DE REGISTRO -->
-                        <form action="registro.php" method="POST" class="d-flex flex-column gap-3">
+                        <form action="index.php?accion=registro" method="POST" class="d-flex flex-column gap-3">
                             
                             <!-- Nombre Completo -->
                             <div>
@@ -128,7 +89,7 @@ require_once 'includes/header.php';
                         <!-- ENLACE A LOGIN -->
                         <div class="text-center mt-4 pt-2 border-top border-secondary border-opacity-25">
                             <span class="text-secondary small">¿Ya tienes una cuenta?</span>
-                            <a href="login.php" class="text-primary fw-bold text-decoration-none small ms-1">Inicia sesión aquí</a>
+                            <a href="index.php?accion=login" class="text-primary fw-bold text-decoration-none small ms-1">Inicia sesión aquí</a>
                         </div>
 
                     </div>
@@ -139,5 +100,5 @@ require_once 'includes/header.php';
     </main>
 
 <?php
-require_once 'includes/footer.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tp-framework-videojuegos/Tp-sitio-videojuegos/includes/footer.php';
 ?>

@@ -1,4 +1,4 @@
-        <footer class="footer-custom pt-5 mt-5">
+<footer class="footer-custom pt-5 mt-5">
             <div class="container">
                 <div class="row g-4 pb-5">
                     <div class="col-12 col-md-5">
@@ -8,10 +8,10 @@
                     <div class="col-6 col-md-2">
                         <h6 class="text-muted text-uppercase fw-bold mb-3">EXPLORAR</h6>
                         <ul class="list-unstyled footer-links">
-                            <li><a href="#">Inicio</a></li>
-                            <li><a href="#">Noticias</a></li>
-                            <li><a href="#">Guías</a></li>
-                           <li><a href="comunidad.php" class="text-secondary text-decoration-none">Comunidad</a></li>
+                            <li><a href="index.php?accion=inicio">Inicio</a></li>
+                            <li><a href="index.php?accion=noticias">Noticias</a></li>
+                            <li><a href="index.php?accion=guias">Guías</a></li>
+                            <li><a href="index.php?accion=comunidad" class="text-secondary text-decoration-none">Comunidad</a></li>
                         </ul>
                     </div>
                     <div class="col-6 col-md-3">
@@ -41,6 +41,7 @@
                     </div>
                 </div>
             </div>
+        </footer>
 
     </main>
 
@@ -50,4 +51,3 @@
     <script src="js/main.js"></script>
 </body>
 </html>
-</footer>

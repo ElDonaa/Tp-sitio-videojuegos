@@ -1,7 +1,7 @@
 <?php
-$titulo_pagina = "inicio - GAMEZONE";
-require_once 'includes/header.php';
-?>  
+$titulo_pagina = "Inicio - GAMEZONE";
+require_once __DIR__ . '/../clase5/includes/header.php';
+?> 
     <main class="main-content">
         
         
@@ -265,5 +265,5 @@ require_once 'includes/header.php';
             </div>
         </section>
 <?php
-require_once 'includes/footer.php';
+require_once __DIR__ . '/../clase5/includes/footer.php';
 ?>
