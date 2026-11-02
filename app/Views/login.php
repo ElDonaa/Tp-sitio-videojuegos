@@ -1,40 +1,9 @@
 <?php
 $titulo_pagina = "Iniciar Sesión - GAMEZONE";
 
-require_once 'conexion.php';
-session_start();
-
-$error = "";
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = trim($_POST['email']);
-    $password = $_POST['password'];
-
-    // Buscar el usuario en la base de datos por su correo
-    $sql = "SELECT * FROM usuarios WHERE email = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$email]);
-    $usuario = $stmt->fetch();
-
-    // Validar contraseña usando password_verify (Requisito TP8)
-    if ($usuario && password_verify($password, $usuario['password'])) {
-        // Mitigar ataques de fijación de sesión
-        session_regenerate_id(true);
-
-        // Guardar datos clave en la superglobal $_SESSION utilizando las columnas reales
-        $_SESSION['usuario_id'] = $usuario['id_usuario'];
-        $_SESSION['usuario_nombre'] = $usuario['nombre'];
-        $_SESSION['rol'] = $usuario['id_rol'];
-
-        // Redirigir al inicio o panel principal
-        header("Location: index.php");
-        exit();
-    } else {
-        $error = "Correo electrónico o contraseña incorrectos.";
-    }
-}
-
-require_once 'includes/header.php';
+// Nota: La lógica de procesamiento, la conexión y session_start() 
+// ya se manejan en AuthController.php. Aquí solo mostramos la vista.
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tp-framework-videojuegos/Tp-sitio-videojuegos/includes/header.php';
 ?>
 
     <!-- SECCIÓN PRINCIPAL: INICIAR SESIÓN -->
@@ -62,7 +31,7 @@ require_once 'includes/header.php';
                             </div>
                         <?php endif; ?>
 
-                        <!-- ALERTA DE ERROR -->
+                        <!-- ALERTA DE ERROR (Viene del controlador) -->
                         <?php if(!empty($error)): ?>
                             <div class="alert alert-danger py-2 small mb-4">
                                 <i class="fa-solid fa-triangle-exclamation me-1"></i> <?php echo $error; ?>
@@ -70,7 +39,7 @@ require_once 'includes/header.php';
                         <?php endif; ?>
 
                         <!-- FORMULARIO DE LOGIN -->
-                        <form action="login.php" method="POST" class="d-flex flex-column gap-3">
+                        <form action="index.php?accion=login" method="POST" class="d-flex flex-column gap-3">
                             
                             <!-- Correo Electrónico -->
                             <div>
@@ -110,7 +79,7 @@ require_once 'includes/header.php';
                         <!-- ENLACE A REGISTRO -->
                         <div class="text-center mt-4 pt-3 border-top border-secondary border-opacity-25">
                             <span class="text-secondary small">¿Aún no tienes una cuenta?</span>
-                            <a href="registro.php" class="text-primary fw-bold text-decoration-none small ms-1">Regístrate aquí</a>
+                            <a href="index.php?accion=registro" class="text-primary fw-bold text-decoration-none small ms-1">Regístrate aquí</a>
                         </div>
 
                     </div>
@@ -121,5 +90,5 @@ require_once 'includes/header.php';
     </main>
 
 <?php
-require_once 'includes/footer.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tp-framework-videojuegos/Tp-sitio-videojuegos/includes/footer.php';
 ?>

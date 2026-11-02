@@ -3,7 +3,7 @@ $titulo_pagina = "guias - GAMEZONE";
 require_once 'includes/header.php';
 ?>
 
-    <!-- HERO SECTION / SECCIÓN SUPERIOR -->
+    
     <section class="py-5 text-center">
         <div class="container">
             <div class="d-inline-flex align-items-center gap-2 bg-primary bg-opacity-10 border border-primary border-opacity-25 rounded-pill px-3 py-1 mb-3 text-primary small">
