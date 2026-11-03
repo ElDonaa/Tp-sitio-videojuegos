@@ -32,21 +32,20 @@ require_once 'includes/header.php';
                 </small>
             </div>
 
-            <!-- BARRA DE BÚSQUEDA Y CONTROLES (FORMULARIO GET) -->
-            <form action="" method="GET" class="bg-card border border-secondary border-opacity-25 rounded-3 p-3 mb-3">
+            <!-- BARRA DE BÚSQUEDA Y CONTROLES (FORMULARIO GET / AJAX) -->
+            <div class="bg-card border border-secondary border-opacity-25 rounded-3 p-3 mb-3">
                 <div class="row g-3 align-items-center">
                     <div class="col-lg-7">
                         <div class="input-group bg-dark border border-secondary border-opacity-25 rounded-3">
                             <span class="input-group-text bg-transparent border-0 text-secondary">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </span>
-                            <!-- Se agrega name="q" y la persistencia de datos con htmlspecialchars -->
-                            <input type="text" name="q" class="form-control bg-transparent border-0 text-white shadow-none" value="<?php echo htmlspecialchars($termino_busqueda, ENT_QUOTES, 'UTF-8'); ?>" placeholder="Buscar juegos, géneros, creadores...">
+                            <!-- Se agregó id="inputBusqueda" requerido para que el Fetch API capture el evento input en tiempo real -->
+                            <input type="text" id="inputBusqueda" name="q" class="form-control bg-transparent border-0 text-white shadow-none" value="<?php echo htmlspecialchars($termino_busqueda, ENT_QUOTES, 'UTF-8'); ?>" placeholder="Buscar juegos en tiempo real...">
                             <a href="buscar.php" class="btn border-0 text-secondary text-decoration-none d-flex align-items-center"><i class="fa-solid fa-xmark"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-5 d-flex align-items-center justify-content-lg-end gap-2">
-                        <button type="submit" class="btn btn-primary btn-sm px-4 fw-bold">Buscar</button>
                         <div class="btn-group me-2" role="group">
                             <button type="button" class="btn btn-outline-secondary active"><i class="fa-solid fa-border-all"></i></button>
                             <button type="button" class="btn btn-outline-secondary"><i class="fa-solid fa-list"></i></button>
@@ -67,7 +66,7 @@ require_once 'includes/header.php';
                     <span class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-25 rounded-pill px-2 py-1 fw-normal">RPG <i class="fa-solid fa-xmark ms-1 cursor-pointer"></i></span>
                     <span class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-25 rounded-pill px-2 py-1 fw-normal">&lt; 60€ <i class="fa-solid fa-xmark ms-1 cursor-pointer"></i></span>
                 </div>
-            </form>
+            </div>
 
             <!-- CONTENIDO PRINCIPAL: FILTROS + RESULTADOS -->
             <div class="row g-4 mt-1">
@@ -105,100 +104,7 @@ require_once 'includes/header.php';
                                     </div>
                                     <span class="text-secondary opacity-50" style="font-size: 10px;">850</span>
                                 </div>
-                                <div class="form-check d-flex justify-content-between align-items-center ps-0">
-                                    <div>
-                                        <input class="form-check-input ms-0 me-2" type="checkbox" id="xbox">
-                                        <label class="form-check-label text-secondary" for="xbox">Xbox Series X/S</label>
-                                    </div>
-                                    <span class="text-secondary opacity-50" style="font-size: 10px;">720</span>
-                                </div>
-                                <div class="form-check d-flex justify-content-between align-items-center ps-0">
-                                    <div>
-                                        <input class="form-check-input ms-0 me-2" type="checkbox" id="switch">
-                                        <label class="form-check-label text-secondary" for="switch">Nintendo Switch</label>
-                                    </div>
-                                    <span class="text-secondary opacity-50" style="font-size: 10px;">430</span>
-                                </div>
-                                <div class="form-check d-flex justify-content-between align-items-center ps-0">
-                                    <div>
-                                        <input class="form-check-input ms-0 me-2" type="checkbox" id="retro">
-                                        <label class="form-check-label text-secondary" for="retro">Retro / Classic</label>
-                                    </div>
-                                    <span class="text-secondary opacity-50" style="font-size: 10px;">120</span>
-                                </div>
                             </div>
-                        </div>
-
-                        <!-- FILTRO: CATEGORÍAS -->
-                        <div class="border-bottom border-secondary border-opacity-25 pb-3">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="fw-bold text-uppercase small" style="font-size: 11px; letter-spacing: 0.5px;">CATEGORÍAS</span>
-                                <i class="fa-solid fa-chevron-up small text-secondary" style="font-size: 10px;"></i>
-                            </div>
-                            <div class="row g-2 small">
-                                <div class="col-6">
-                                    <div class="form-check ps-0">
-                                        <input class="form-check-input ms-0 me-2" type="checkbox" id="accion">
-                                        <label class="form-check-label text-secondary" for="accion">Acción</label>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-check ps-0">
-                                        <input class="form-check-input ms-0 me-2" type="checkbox" id="rpg" checked>
-                                        <label class="form-check-label text-white" for="rpg">RPG</label>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-check ps-0">
-                                        <input class="form-check-input ms-0 me-2" type="checkbox" id="shooter">
-                                        <label class="form-check-label text-secondary" for="shooter">Shooter</label>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-check ps-0">
-                                        <input class="form-check-input ms-0 me-2" type="checkbox" id="estrategia">
-                                        <label class="form-check-label text-secondary" for="estrategia">Estrategia</label>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-check ps-0">
-                                        <input class="form-check-input ms-0 me-2" type="checkbox" id="deportes">
-                                        <label class="form-check-label text-secondary" for="deportes">Deportes</label>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-check ps-0">
-                                        <input class="form-check-input ms-0 me-2" type="checkbox" id="aventura">
-                                        <label class="form-check-label text-secondary" for="aventura">Aventura</label>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-check ps-0">
-                                        <input class="form-check-input ms-0 me-2" type="checkbox" id="terror">
-                                        <label class="form-check-label text-secondary" for="terror">Terror</label>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-check ps-0">
-                                        <input class="form-check-input ms-0 me-2" type="checkbox" id="indie">
-                                        <label class="form-check-label text-secondary" for="indie">Indie</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- FILTRO: RANGO DE PRECIO -->
-                        <div class="border-bottom border-secondary border-opacity-25 pb-3">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="fw-bold text-uppercase small" style="font-size: 11px; letter-spacing: 0.5px;">RANGO DE PRECIO</span>
-                                <i class="fa-solid fa-chevron-up small text-secondary" style="font-size: 10px;"></i>
-                            </div>
-                            <div class="d-flex align-items-center gap-2 mb-2">
-                                <input type="text" class="form-control form-control-sm bg-dark border-secondary border-opacity-25 text-white text-center" placeholder="€ Min">
-                                <span class="text-secondary">—</span>
-                                <input type="text" class="form-control form-control-sm bg-dark border-secondary border-opacity-25 text-white text-center" placeholder="€ Max">
-                            </div>
-                            <button type="button" class="btn btn-outline-primary btn-sm w-100 mt-2 rounded-3">Aplicar rango</button>
                         </div>
 
                         <!-- BANNER TARJETA SORTEO SEMANAL -->
@@ -216,207 +122,32 @@ require_once 'includes/header.php';
                     </div>
                 </aside>
 
-                <!-- COLUMNA DERECHA: RESULTADOS -->
+                <!-- COLUMNA DERECHA: RESULTADOS DINÁMICOS (AJAX) -->
                 <section class="col-lg-9">
                     
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <small class="text-secondary" style="font-size: 12px;">
-                            Mostrando resultados para: <strong class="text-white"><?php echo htmlspecialchars($termino_busqueda !== '' ? $termino_busqueda : 'Todos', ENT_QUOTES, 'UTF-8'); ?></strong>
+                            Resultados dinámicos en tiempo real via Fetch API
                         </small>
                         <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 rounded-pill px-2 py-1 small" style="font-size: 10px;">
                             <i class="fa-solid fa-circle text-primary me-1" style="font-size: 6px;"></i> EN TIEMPO REAL
                         </span>
                     </div>
 
-                    <!-- GRID DE TARJETAS DE JUEGOS (2 FILAS X 3 COLUMNAS) -->
-                    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mb-4">
-                        
-                        <!-- CARD 1 -->
-                        <div class="col">
-                            <div class="bg-card border border-secondary border-opacity-25 rounded-4 overflow-hidden h-100 d-flex flex-column">
-                                <div class="position-relative overflow-hidden" style="height: 160px;">
-                                    <img src="img/Plataformas.png" class="w-100 h-100 object-fit-cover" alt="Vibrant Combat Evolved">
-                                    <span class="badge bg-primary text-white position-absolute top-0 start-0 m-2 fw-bold" style="font-size: 9px;">DESTACADO</span>
-                                    <span class="badge bg-dark bg-opacity-75 text-white position-absolute bottom-0 end-0 m-2 border border-secondary border-opacity-25" style="font-size: 11px;">
-                                        <i class="fa-solid fa-star text-warning me-1"></i> 4.8
-                                    </span>
-                                </div>
-                                <div class="p-3 d-flex flex-column flex-grow-1 justify-content-between">
-                                    <div>
-                                        <span class="text-uppercase text-primary fw-bold d-block mb-1" style="font-size: 10px;">LUCHA / ACCIÓN</span>
-                                        <h2 class="h6 fw-bold text-white mb-2">Vibrant Combat Evolved</h2>
-                                    </div>
-                                    <div>
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <small class="text-secondary uppercase" style="font-size: 10px;">PLATAFORMA<br><strong class="text-white">PC / PS5</strong></small>
-                                            <span class="fw-bold text-primary">59.99 €</span>
-                                        </div>
-                                        <a href="#" class="btn btn-outline-light btn-sm w-100 rounded-3 d-flex justify-content-between align-items-center" style="font-size: 12px;">
-                                            Ver detalles <i class="fa-solid fa-chevron-right ms-1" style="font-size: 10px;"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- CARD 2 -->
-                        <div class="col">
-                            <div class="bg-card border border-secondary border-opacity-25 rounded-4 overflow-hidden h-100 d-flex flex-column">
-                                <div class="position-relative overflow-hidden" style="height: 160px;">
-                                    <img src="img/Plataformas.png" class="w-100 h-100 object-fit-cover" alt="Star Odyssey: Infinite">
-                                    <span class="badge bg-dark bg-opacity-75 text-white position-absolute bottom-0 end-0 m-2 border border-secondary border-opacity-25" style="font-size: 11px;">
-                                        <i class="fa-solid fa-star text-warning me-1"></i> 4.5
-                                    </span>
-                                </div>
-                                <div class="p-3 d-flex flex-column flex-grow-1 justify-content-between">
-                                    <div>
-                                        <span class="text-uppercase text-primary fw-bold d-block mb-1" style="font-size: 10px;">EXPLORACIÓN ESPACIAL</span>
-                                        <h2 class="h6 fw-bold text-white mb-2">Star Odyssey: Infinite</h2>
-                                    </div>
-                                    <div>
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <small class="text-secondary uppercase" style="font-size: 10px;">PLATAFORMA<br><strong class="text-white">PC / Xbox</strong></small>
-                                            <span class="fw-bold text-primary">49.99 €</span>
-                                        </div>
-                                        <a href="#" class="btn btn-outline-light btn-sm w-100 rounded-3 d-flex justify-content-between align-items-center" style="font-size: 12px;">
-                                            Ver detalles <i class="fa-solid fa-chevron-right ms-1" style="font-size: 10px;"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- CARD 3 -->
-                        <div class="col">
-                            <div class="bg-card border border-secondary border-opacity-25 rounded-4 overflow-hidden h-100 d-flex flex-column">
-                                <div class="position-relative overflow-hidden" style="height: 160px;">
-                                    <img src="img/Plataformas.png" class="w-100 h-100 object-fit-cover" alt="Whimsical Worlds">
-                                    <span class="badge bg-dark bg-opacity-75 text-white position-absolute bottom-0 end-0 m-2 border border-secondary border-opacity-25" style="font-size: 11px;">
-                                        <i class="fa-solid fa-star text-warning me-1"></i> 4.2
-                                    </span>
-                                </div>
-                                <div class="p-3 d-flex flex-column flex-grow-1 justify-content-between">
-                                    <div>
-                                        <span class="text-uppercase text-primary fw-bold d-block mb-1" style="font-size: 10px;">PLATAFORMAS / PUZZLE</span>
-                                        <h2 class="h6 fw-bold text-white mb-2">Whimsical Worlds</h2>
-                                    </div>
-                                    <div>
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <small class="text-secondary uppercase" style="font-size: 10px;">PLATAFORMA<br><strong class="text-white">Nintendo Switch</strong></small>
-                                            <span class="fw-bold text-primary">39.99 €</span>
-                                        </div>
-                                        <a href="#" class="btn btn-outline-light btn-sm w-100 rounded-3 d-flex justify-content-between align-items-center" style="font-size: 12px;">
-                                            Ver detalles <i class="fa-solid fa-chevron-right ms-1" style="font-size: 10px;"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- CARD 4 -->
-                        <div class="col">
-                            <div class="bg-card border border-secondary border-opacity-25 rounded-4 overflow-hidden h-100 d-flex flex-column">
-                                <div class="position-relative overflow-hidden" style="height: 160px;">
-                                    <img src="img/Plataformas.png" class="w-100 h-100 object-fit-cover" alt="Tactical Strike: Urban Ops">
-                                    <span class="badge bg-primary text-white position-absolute top-0 start-0 m-2 fw-bold" style="font-size: 9px;">DESTACADO</span>
-                                    <span class="badge bg-dark bg-opacity-75 text-white position-absolute bottom-0 end-0 m-2 border border-secondary border-opacity-25" style="font-size: 11px;">
-                                        <i class="fa-solid fa-star text-warning me-1"></i> 4.9
-                                    </span>
-                                </div>
-                                <div class="p-3 d-flex flex-column flex-grow-1 justify-content-between">
-                                    <div>
-                                        <span class="text-uppercase text-primary fw-bold d-block mb-1" style="font-size: 10px;">SHOOTER TÁCTICO</span>
-                                        <h2 class="h6 fw-bold text-white mb-2">Tactical Strike: Urban Ops</h2>
-                                    </div>
-                                    <div>
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <small class="text-secondary uppercase" style="font-size: 10px;">PLATAFORMA<br><strong class="text-white">PC / PS5 / Xbox</strong></small>
-                                            <span class="fw-bold text-primary">69.99 €</span>
-                                        </div>
-                                        <a href="#" class="btn btn-outline-light btn-sm w-100 rounded-3 d-flex justify-content-between align-items-center" style="font-size: 12px;">
-                                            Ver detalles <i class="fa-solid fa-chevron-right ms-1" style="font-size: 10px;"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- CARD 5 -->
-                        <div class="col">
-                            <div class="bg-card border border-secondary border-opacity-25 rounded-4 overflow-hidden h-100 d-flex flex-column">
-                                <div class="position-relative overflow-hidden" style="height: 160px;">
-                                    <img src="img/Plataformas.png" class="w-100 h-100 object-fit-cover" alt="Cyber City Drift">
-                                    <span class="badge bg-dark bg-opacity-75 text-white position-absolute bottom-0 end-0 m-2 border border-secondary border-opacity-25" style="font-size: 11px;">
-                                        <i class="fa-solid fa-star text-warning me-1"></i> 4.1
-                                    </span>
-                                </div>
-                                <div class="p-3 d-flex flex-column flex-grow-1 justify-content-between">
-                                    <div>
-                                        <span class="text-uppercase text-primary fw-bold d-block mb-1" style="font-size: 10px;">CARRERAS</span>
-                                        <h2 class="h6 fw-bold text-white mb-2">Cyber City Drift</h2>
-                                    </div>
-                                    <div>
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <small class="text-secondary uppercase" style="font-size: 10px;">PLATAFORMA<br><strong class="text-white">PC</strong></small>
-                                            <span class="fw-bold text-primary">29.99 €</span>
-                                        </div>
-                                        <a href="#" class="btn btn-outline-light btn-sm w-100 rounded-3 d-flex justify-content-between align-items-center" style="font-size: 12px;">
-                                            Ver detalles <i class="fa-solid fa-chevron-right ms-1" style="font-size: 10px;"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- CARD 6 -->
-                        <div class="col">
-                            <div class="bg-card border border-secondary border-opacity-25 rounded-4 overflow-hidden h-100 d-flex flex-column">
-                                <div class="position-relative overflow-hidden" style="height: 160px;">
-                                    <img src="img/Plataformas.png" class="w-100 h-100 object-fit-cover" alt="Shadow of the Forest">
-                                    <span class="badge bg-dark bg-opacity-75 text-white position-absolute bottom-0 end-0 m-2 border border-secondary border-opacity-25" style="font-size: 11px;">
-                                        <i class="fa-solid fa-star text-warning me-1"></i> 4.7
-                                    </span>
-                                </div>
-                                <div class="p-3 d-flex flex-column flex-grow-1 justify-content-between">
-                                    <div>
-                                        <span class="text-uppercase text-primary fw-bold d-block mb-1" style="font-size: 10px;">RPG / ACCIÓN</span>
-                                        <h2 class="h6 fw-bold text-white mb-2">Shadow of the Forest</h2>
-                                    </div>
-                                    <div>
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <small class="text-secondary uppercase" style="font-size: 10px;">PLATAFORMA<br><strong class="text-white">PC / PS5</strong></small>
-                                            <span class="fw-bold text-primary">54.99 €</span>
-                                        </div>
-                                        <a href="#" class="btn btn-outline-light btn-sm w-100 rounded-3 d-flex justify-content-between align-items-center" style="font-size: 12px;">
-                                            Ver detalles <i class="fa-solid fa-chevron-right ms-1" style="font-size: 10px;"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- PAGINACIÓN -->
-                    <div class="d-flex justify-content-center align-items-center gap-2 mb-5">
-                        <button type="button" class="btn btn-dark border border-secondary border-opacity-25 text-secondary px-3 py-1 rounded-3 small" disabled>Anterior</button>
-                        <button type="button" class="btn btn-primary px-3 py-1 rounded-3 small fw-bold">1</button>
-                        <button type="button" class="btn btn-dark border border-secondary border-opacity-25 text-white px-3 py-1 rounded-3 small">2</button>
-                        <button type="button" class="btn btn-dark border border-secondary border-opacity-25 text-white px-3 py-1 rounded-3 small">3</button>
-                        <span class="text-secondary px-1">...</span>
-                        <button type="button" class="btn btn-dark border border-secondary border-opacity-25 text-white px-3 py-1 rounded-3 small">42</button>
-                        <button type="button" class="btn btn-dark border border-secondary border-opacity-25 text-white px-3 py-1 rounded-3 small">Siguiente</button>
+                    <!-- AQUÍ SE INYECTAN LOS RESULTADOS DE JUEGOS DINÁMICAMENTE CON JS -->
+                    <div id="resultados" class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mb-4">
+                        <!-- Las tarjetas se cargan automáticamente mediante js/app.js -->
                     </div>
 
                     <!-- ESTADÍSTICAS INFERIORES / METRICAS -->
-                    <div class="bg-card border border-secondary border-opacity-25 rounded-4 p-4">
+                    <div class="bg-card border border-secondary border-opacity-25 rounded-4 p-4 mt-4">
                         <div class="row align-items-center g-4 text-center text-md-start">
                             <div class="col-md-3">
                                 <small class="text-uppercase text-secondary fw-semibold d-block mb-1" style="font-size: 10px;">TENDENCIA SEMANAL</small>
                                 <span class="fs-4 fw-bold text-white d-flex align-items-center justify-content-center justify-content-md-start gap-2">
                                     <i class="fa-solid fa-gamepad text-primary fs-5"></i> +2.4k
                                 </span>
-                                <small class="text-secondary" style="font-size: 11px;">Usuarios buscando 'Metroidvania'</small>
+                                <small class="text-secondary" style="font-size: 11px;">Usuarios buscando en tiempo real</small>
                             </div>
                             <div class="col-md-3">
                                 <small class="text-uppercase text-secondary fw-semibold d-block mb-1" style="font-size: 10px;">LANZAMIENTOS</small>
@@ -445,6 +176,9 @@ require_once 'includes/header.php';
             </div>
         </div>
     </main>
+
+    <!-- Enlazamos el script de Fetch API para que procese la búsqueda asincrónica -->
+    <script src="js/app.js"></script>
 
 <?php
 require_once 'includes/footer.php';
