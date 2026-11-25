@@ -1,5 +1,6 @@
 <?php
-require_once '../config/conexion.php';
+require_once __DIR__ . '/auth_admin.php';
+require_once __DIR__ . '/../config/conexion.php';
 
 // Consulta segura para obtener los juegos de la base de datos
 $stmt = $pdo->query("SELECT * FROM juegos ORDER BY id_juego DESC");
