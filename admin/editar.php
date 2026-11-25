@@ -1,5 +1,6 @@
 <?php
-require_once '../config/conexion.php';
+require_once __DIR__ . '/auth_admin.php';
+require_once __DIR__ . '/../config/conexion.php';
 
 $id =$_GET['id'] ?? null;
 
